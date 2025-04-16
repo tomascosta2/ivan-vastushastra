@@ -1,0 +1,81 @@
+---
+const TESTIMONIOS = [
+  {
+    nombre: "Fernanda Chedid",
+    texto: "El curso me pareció una experiencia sumamente enriquecedora, a pesar de mi escepticismo inicial, comencé el curso por curiosidad y lo terminé convencida de que hay elementos de una naturaleza tan sutil como simplicidad y practicidad tan grandes que lo aplicarlos será por parte. Eternamente agradecida por la oportunidad de experimentar este nuevo mundo de equilibrio y paz, y por tu generosidad al compartir tu saber. Gracias, gracias, gracias.",
+	columna: 1
+  },
+  {
+    nombre: "Flavia Romano",
+    texto: "La formación en consultores de Vastu Shastra, me reconecto con mi ser, me permitió recordar mi verdadera vocación de aplicar la arquitectura con un sentido más profundo, valorando, respetando y conectando con los elementos de la naturaleza, la energía que somos y nos rodea. Infinitas gracias a Iván por ser mi mentor en esta ciencia ancestral, mi admiración y reconocimiento por la dedicación en cada una de las clases, experiencias compartidas y sus devoluciones. Con su sensibilidad y practicidad, impartió un con plus personal todos los objetivos programados. Agradezco el universo haber sido participe de la formación. Muchísimas Gracias!!!❤️",
+	columna: 3
+  },
+  {
+    nombre: "Yakelin Regalado",
+    texto: "Ivan!! Excelente formación, demás está decirte que super agradecida contigo, con la vida y el universo por haberme permitido formar parte de el primer grupo de muchos más !!! Éxitos totales gracias totales, dedicación y constancia. Gracias, gracias, gracias🙏",
+	columna: 2
+  },
+  {
+    nombre: "Lula",
+    texto: "Me encantó el curso de Vastu Shastra!! Aprendí una ciencia que me ha enseñado distintas maneras de aplicar en los espacios y así mejorar la calidad de vida. Gracias Iván por abrirme el camino a esta nueva pero ancestral manera de ver el mundo!! Disfruté cada minuto y aprendí muchísimas cosas interesantes. Gracias ❤️",
+	columna: 1
+  },
+  {
+    nombre: "Yachi",
+    texto: "Gracias Iván por toda tu generosidad y dedicación en cada clase, con tus explicaciones, todo el tiempo por tu tiempo de responder, y materiales que nos diste. Estoy muy feliz y agradecida de haber aprendido esta ciencia que nos da mejor calidad de vida. En un nuevo mundo me sumergí, y con un entusiasmo MUY grande. Así que, nuevamente gracias por aportarnos valor, conocimiento y amor! Por más cursos y consciencia en los espacios!🙌",
+	columna: 2
+  },
+  {
+    nombre: "Fer Marcó del Pont",
+    texto: "Iván gracias x el curso. Me gustó y aprendí mucho sobre un mundo nuevo. Es muy interesante poder aplicar una mirada diferente como profesional de la arquitectura. Te agradezco tu dedicación y trabajo para transmitir la información y estar siempre al pendiente para despejar dudas.",
+	columna: 3
+  },
+  {
+    nombre: "Ceci Ramadori",
+    texto: "Iván!! Me encantó la formación. Gracias por expandir ésta sabiduría ancestral, con tanta pasión y claridad. Me sentí muy acompañada, siempre estabas pendiente, respondiendo con paciencia, a nuestras preguntas, y alentándonos para empezar a compartir ésta valiosa filosofía del Vastu Shastra. Gratitud infinita…✨",
+	columna: 1
+  },
+  {
+    nombre: "Agustina Vanzulli",
+    texto: "Entrar en un espacio, En un tiempo, En un universo total. Sintonizar tiempo, espacio y universo. Entender el espacio como extensión de quien soy. Alinearme con toda la energía natural y fluir con ella! Intencionar el cosmos a mi favor! ¡Desde una mirada práctica, sencilla, clara! Gracias Ivan!!! Tu entusiasmo contagia y expande! ¡Muy atento en todo, con gran generosidad brindás tus conocimientos, tus saberes con sinceridad y claridad! ¡Agradecida por darme el espacio y tiempo para aprender, formar mi mirada, mis ideas, mi mundo en una ciencia universal! 🙌✨🔑🌍",
+	columna: 2
+  }
+];
+
+
+const col1 = TESTIMONIOS.filter(t => t.columna === 1);
+const col2 = TESTIMONIOS.filter(t => t.columna === 2);
+const col3 = TESTIMONIOS.filter(t => t.columna === 3);
+---
+
+<section class="py-[60px] md:py-[80px] px-4 bg-white">
+	<div class="max-w-[1040px] mx-auto">
+		<span class="text-[#4B473C] font-semibold bg-[#87806B]/50 py-[10px] mb-4 px-8 border-[#87806B]/50 border-3 rounded-full block w-fit mx-auto">Testimonios</span>
+		<h2 class="text-[24px] leading-[120%] md:text-[40px] md:leading-[50px] text-[#111] font-bold max-w-[740px] mx-auto text-center">
+			¿Que opinan los que ya hicieron el curso?
+		</h2>
+		<p class="text-center text-[#111]/80 font-bold mt-4">Ellos ya se formaron y hoy aplican esto con clientes reales.</p>
+		<div class="grid md:grid-cols-3 md:gap-4 mt-8">
+			{[col1, col2, col3].map((col) => (
+			<div class="columns-1">
+				{col.map((t) => (
+				<div class="border-1 border-black/20 p-8 rounded-lg mb-4">
+					<div class="flex items-center gap-4">
+						<img class="w-[50px] h-auto" src="/images/testimonio-profile.webp" alt="Testimonio">
+						<div>
+							<p class="text-[#111]/80 font-semibold mb-1">{t.nombre}</p>
+							<img class="max-w-[106px]" src="/images/estrellas.webp" alt="Estrellas" />
+						</div>
+					</div>
+					<p class="mt-4 text-[#111]/80">“{t.texto}”</p>
+				</div>
+				))}
+			</div>
+			))}
+		</div>
+		<div class="mt-8 relative">
+			<a href="#!" class="iv-btn mb-2 relative">Agendar llamada »</a>
+			<p class="text-center text-[#111]/80 font-semibold text-[16px] relative">Precio especial por el mes de Abril</p>
+		</div>
+	</div>
+</section>
