@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+	<section class="py-[60px] md:py-[90px] relative bg-[#111] overflow-clip">
+		<div class="tcp-container relative">
+			<h5
+				class="text-white text-balance font-semibold text-center text-[16px] md:text-[18px] mb-4 md:mb-4"
+			>
+				Ya estas un paso más cerca de poder Equilibrar y Armonizar cualquier tipo de Espacios.
+			</h5>
+			<h1
+				class="text-white font-bold text-[22px] leading-[120%] md:text-[34px] text-center max-w-[1200px] mx-auto mb-8 md:text-balance"
+			>
+				¡Felicidades! Vas a recibir un correo y WhatsApp con toda la
+				información para conectarte a llamada que agendaste.
+			</h1>
+			<p
+				class="text-center max-w-[800px] text-white mx-auto md:text-[20px]"
+			>
+				Mi equipo se va a contactar vía Whatsapp para confirmar tu
+				asistencia y acompañarte en este proceso de transformación junto
+				a nosotros.
+				<br /><br />
+				Por favor, asegurate de poder asistir a la reunión y estar en un
+				espacio cómodo para dedicarle la atención que merece!
+				<br /><br />
+				(En caso de no poder avisar con anticipación para no quitarle lugar
+				a otra persona).
+				<br /><br />
+				Abrazo, Ivan.
+			</p>
+			<p class="text-center mt-8 text-white/80 max-w-[500px] mx-auto">
+				(En caso de no poder asistir por favor avisar con anticipación
+				para no quitarle lugar a otra persona).
+			</p>
+			<img
+				class="mx-auto w-[250px] mix-blend-screen mt-[80px]"
+				src="/images/vastu-shastra.webp"
+				alt="Ivan Dacharry"
+			/>
+			<p
+				class="text-white/80 text-center mt-8 text-[14px] md:text-[16px]"
+			>
+				© Ivan Dacharry 2025. Todos los derechos reservados.
+			</p>
+		</div>
+	</section>
+	<!-- Meta Pixel Code -->
+	<script is:inline>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window, document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '4313125762161146');
+		fbq('track', 'PageView');
+		fbq('track', 'CompleteRegistration');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+	src="https://www.facebook.com/tr?id=4313125762161146&ev=PageView&noscript=1"
+	/></noscript>
+	<!-- End Meta Pixel Code -->
+</Layout>
