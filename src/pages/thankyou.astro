@@ -48,8 +48,8 @@ import Layout from "../layouts/Layout.astro";
 		</div>
 	</section>
 	<script is:inline>
-		window.onload = () => {
+		window.addEventListener('load', () => {
 			fbq('track', 'CompleteRegistration');
-		}
+		})
 	</script>
 </Layout>
