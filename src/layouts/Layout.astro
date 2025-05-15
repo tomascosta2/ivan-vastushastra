@@ -14,10 +14,6 @@ import '@fontsource/titillium-web/900.css';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>VASTU SHASTRA ~ Programa de formación para consultores</title>
-	</head>
-	<body>
-		<slot />
-
 		<!-- Meta Pixel Code -->
 		<script is:inline>
 			window.onload = () => {
@@ -36,6 +32,10 @@ import '@fontsource/titillium-web/900.css';
 		src="https://www.facebook.com/tr?id=4313125762161146&ev=PageView&noscript=1"
 		/></noscript>
 		<!-- End Meta Pixel Code -->
+	</head>
+	<body>
+		<slot />
+
 	</body>
 </html>
 
