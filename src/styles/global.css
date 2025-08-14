@@ -23,5 +23,5 @@ body {
 }
 
 .iv-btn {
-	@apply block md:w-fit mx-auto md:px-[120px] py-[20px] text-center rounded-full bg-linear-90 from-[#BA8C36] to-[#F4B33A] text-white font-bold;
+	@apply block max-w-[400px] mx-auto md:px-[120px] py-[20px] text-center rounded-full bg-linear-90 from-[#BA8C36] to-[#F4B33A] text-white font-bold;
 }
