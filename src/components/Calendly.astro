@@ -10,9 +10,10 @@
 		<!-- Calendly inline widget begin -->
 		<div
 			class="calendly-inline-widget mt-8"
-			data-url="https://calendly.com/dacharryi/consulta-online-formacion-vastu-shastra?hide_gdpr_banner=1&embed_domain=formacionvastushastra.com&embed_type=Inline&hide_event_type_details=1"
+			data-url="https://calendly.com/dacharryi/consulta-online-formacion-vastu-shastra?hide_gdpr_banner=1&embed_domain=formacionvastushastra.com&embed_type=Inline"
 			style="min-width:320px;height:700px;"
 		>
+			<!-- data-url="https://calendly.com/dacharryi/consulta-online-formacion-vastu-shastra?hide_gdpr_banner=1&embed_domain=formacionvastushastra.com&embed_type=Inline" -->
 		</div>
 		<script
 			type="text/javascript"
@@ -30,10 +31,88 @@
 		© Formación Vastu Shastra 2025. Todos los derechos reservados.
 	</p>
 	<p class="text-white/60 text-[12px] text-center">
-		Este sitio no forma parte de Facebook™ o Meta
-		Platforms, Inc. La información presentada tiene fines educativos y no
-		garantiza resultados específicos. 
+		Este sitio no forma parte de Facebook™ o Meta Platforms, Inc. La
+		información presentada tiene fines educativos y no garantiza resultados
+		específicos.
 		<!-- Al registrarte, aceptás nuestros
 		[Términos y Condiciones] y [Política de Privacidad]. -->
 	</p>
 </section>
+
+<script is:inline>
+	function getCookie(name) {
+		const m = document.cookie.match(
+			new RegExp("(^| )" + name + "=([^;]+)"),
+		);
+		return m ? decodeURIComponent(m[2]) : "";
+	}
+
+	// Crea un ID legible si Calendly no trae UUID (máx 128 chars)
+	function fallbackEventId() {
+		return (
+			"cal_" +
+			Date.now().toString(36) +
+			"_" +
+			Math.random().toString(36).slice(2, 10)
+		);
+	}
+
+	// Sanitiza a caracteres válidos para Meta (recomendado)
+	function sanitizeId(id) {
+		return String(id)
+			.replace(/[^a-zA-Z0-9_\-:.]/g, "")
+			.slice(0, 128);
+	}
+
+	async function sendMetaSchedule(payload) {
+		try {
+			await fetch("/api/meta-capi", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(payload),
+				keepalive: true,
+			});
+		} catch (e) {
+			console.error("Error enviando a Meta CAPI:", e);
+		}
+	}
+
+	window.addEventListener("message", async function (e) {
+		if (e.origin !== "https://calendly.com") return;
+		if (!e?.data || typeof e.data !== "object") return;
+
+		const evt = e.data.event || "";
+		if (typeof evt !== "string" || !evt.startsWith("calendly.")) return;
+
+		if (evt === "calendly.event_scheduled") {
+			// Intenta extraer UUID desde los URIs de Calendly
+			const eventUri = e.data?.payload?.event?.uri || "";
+			const inviteeUri = e.data?.payload?.invitee?.uri || "";
+			const fromEvent = eventUri.split("/").pop() || "";
+			const fromInvitee = inviteeUri.split("/").pop() || "";
+
+			// Prioriza invitee UUID (suele ser único por reserva); si no, usa event UUID; si no, fallback
+			const rawId = fromInvitee || fromEvent || fallbackEventId();
+			const eventId = sanitizeId(rawId);
+
+			const email = localStorage.getItem("lead_email") || "";
+			const phone = localStorage.getItem("lead_phone") || "";
+			const fbp = getCookie("_fbp") || localStorage.getItem("fbp") || "";
+			const fbc = getCookie("_fbc") || localStorage.getItem("fbc") || "";
+
+			await sendMetaSchedule({
+				eventName: "Schedule",
+				eventTime: Math.floor(Date.now() / 1000),
+				eventSourceUrl: window.location.href,
+				actionSource: "website",
+				eventId, // 👈 ahora llega sí o sí
+				email,
+				phone,
+				fbp,
+				fbc,
+			});
+
+			window.location.assign("/thankyou");
+		}
+	});
+</script>
