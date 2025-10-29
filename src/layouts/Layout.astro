@@ -1,11 +1,12 @@
 ---
 import "../styles/global.css";
-import '@fontsource/titillium-web/300.css';
-import '@fontsource/titillium-web/400.css';
-import '@fontsource/titillium-web/600.css';
-import '@fontsource/titillium-web/700.css';
-import '@fontsource/titillium-web/900.css';
+import "@fontsource/titillium-web/300.css";
+import "@fontsource/titillium-web/400.css";
+import "@fontsource/titillium-web/600.css";
+import "@fontsource/titillium-web/700.css";
+import "@fontsource/titillium-web/900.css";
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -17,25 +18,87 @@ import '@fontsource/titillium-web/900.css';
 		<!-- Meta Pixel Code -->
 		<script is:inline>
 			window.onload = () => {
-				!function(f,b,e,v,n,t,s)
-				{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-				n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-				if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-				n.queue=[];t=b.createElement(e);t.async=!0;
-				t.src=v;s=b.getElementsByTagName(e)[0];
-				s.parentNode.insertBefore(t,s)}(window, document,'script',
-				'https://connect.facebook.net/en_US/fbevents.js');
-				fbq('init', '3556102084520342');
-			}
+				!(function (f, b, e, v, n, t, s) {
+					if (f.fbq) return;
+					n = f.fbq = function () {
+						n.callMethod
+							? n.callMethod.apply(n, arguments)
+							: n.queue.push(arguments);
+					};
+					if (!f._fbq) f._fbq = n;
+					n.push = n;
+					n.loaded = !0;
+					n.version = "2.0";
+					n.queue = [];
+					t = b.createElement(e);
+					t.async = !0;
+					t.src = v;
+					s = b.getElementsByTagName(e)[0];
+					s.parentNode.insertBefore(t, s);
+				})(
+					window,
+					document,
+					"script",
+					"https://connect.facebook.net/en_US/fbevents.js",
+				);
+				fbq("init", "3556102084520342");
+			};
 		</script>
-		<noscript><img height="1" width="1" style="display:none"
-		src="https://www.facebook.com/tr?id=3556102084520342&ev=PageView&noscript=1"
-		/></noscript>
+		<noscript
+			><img
+				height="1"
+				width="1"
+				style="display:none"
+				src="https://www.facebook.com/tr?id=3556102084520342&ev=PageView&noscript=1"
+			/></noscript
+		>
 		<!-- End Meta Pixel Code -->
+		<link
+			rel="preload"
+			href="https://player-vz-5c2adb98-6a4.tv.pandavideo.com.br/embed/css/styles.css"
+			as="style"
+		/>
+		<link
+			rel="prerender"
+			href="https://player-vz-5c2adb98-6a4.tv.pandavideo.com.br/embed/?v=30801c25-4496-4333-a104-e455c032e60d"
+		/>
+		<link
+			rel="preload"
+			href="https://player-vz-5c2adb98-6a4.tv.pandavideo.com.br/embed/js/hls.js"
+			as="script"
+		/>
+		<link
+			rel="preload"
+			href="https://player-vz-5c2adb98-6a4.tv.pandavideo.com.br/embed/js/plyr.polyfilled.min.js"
+			as="script"
+		/>
+		<link
+			rel="preload"
+			href="https://config.tv.pandavideo.com.br/vz-5c2adb98-6a4/30801c25-4496-4333-a104-e455c032e60d.json"
+			as="fetch"
+		/>
+		<link
+			rel="preload"
+			href="https://config.tv.pandavideo.com.br/vz-5c2adb98-6a4/config.json"
+			as="fetch"
+		/>
+		<link
+			rel="preload"
+			href="https://b-vz-5c2adb98-6a4.tv.pandavideo.com.br/30801c25-4496-4333-a104-e455c032e60d/playlist.m3u8"
+			as="fetch"
+		/>
+		<link
+			rel="dns-prefetch"
+			href="https://b-vz-5c2adb98-6a4.tv.pandavideo.com.br"
+		/>
+		<link
+			rel="dns-prefetch"
+			href="https://player-vz-5c2adb98-6a4.tv.pandavideo.com.br"
+		/>
+		<link rel="dns-prefetch" href="https://vz-5c2adb98-6a4.b-cdn.net" />
 	</head>
 	<body>
 		<slot />
-
 	</body>
 </html>
 

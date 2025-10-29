@@ -1,9 +1,13 @@
 @import "tailwindcss";
 
 body {
-	background-color: #111;
+	background-color: #151005;
 	color: #FFF;
 	font-family: 'Titillium Web', sans-serif;
+}
+
+* {
+	scroll-behavior: smooth;
 }
 
 
@@ -12,16 +16,16 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-	background-color: #111;
+	background-color: #151005;
 	overflow-x: clip;
 }
 
 *::-webkit-scrollbar-thumb {
 	background-color: #BF9037 !important;
 	border-radius: 20px;
-	border: 5px solid #00041A;
+	border: 5px solid #151005;
 }
 
 .iv-btn {
-	@apply block max-w-[400px] mx-auto md:px-[120px] py-[20px] text-center rounded-full bg-linear-90 from-[#BA8C36] to-[#F4B33A] text-white font-bold;
+	@apply block max-w-[400px] mx-auto md:px-[120px] py-[20px] text-center rounded-full bg-linear-90 from-[#F3B23A] to-[#F3B23A] text-white font-bold;
 }

@@ -1,29 +1,31 @@
 ---
+import Button from "./Button.astro";
 import VideoEmbed from "./VideoEmbed.astro";
 ---
 
-<section class="py-[40px] md:py-[60px] px-4 relative overflow-hidden">
+<section class="pt-[32px] pb-16 md:py-[60px] px-4 relative overflow-hidden">
 	<div
-		class="md:size-[880px] rounded-full bg-[#87806B] absolute blur-[90px] md:blur-[300px] md:-left-[440px] md:-top-[440px]"
+		class="md:size-[880px] rounded-full bg-[#F3B23A] absolute blur-[90px] md:blur-[300px] md:-left-[440px] md:-top-[440px]"
 	>
 	</div>
 	<div class="max-w-[890px] mx-auto relative">
-		<img
-			class="h-[50px] md:h-[60px] mx-auto mb-8"
+		<!-- <img
+			class="h-[40px] md:h-[60px] mx-auto mb-8"
 			src="/images/vastu-shastra.webp"
 			alt="Ivan Vastu Shastra"
-		/>
+		/> -->
+		<span class="text-center mx-auto text-[14px] block w-fit bg-[#F3B23A]/20 border border-[#F3B23A]/40 py-2 px-6 rounded-full">¿Queres crear desde la armonía?</span>
 		<h1
-			class="text-[22px] md:text-[40px] text-center font-bold my-4 leading-[120%] md:leading-[110%]"
+			class="text-[20px] md:text-[40px] text-center font-bold my-4 leading-[120%] md:leading-[110%]"
 		>
 			El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…
-			Porque no es lo mismo construir una Casa linda, que diseñar un <span class="text-[#C09648]">Espacio para ser Feliz.</span>
+			Porque no es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
 		</h1>
 		<div
-			class="w-full z-50 mt-8 border-4 border-[#87806B] rounded-lg overflow-hidden relative"
+			class="w-full z-50 border-4 border-[#F3B23A] rounded-lg overflow-hidden relative"
 		>
 			<p
-				class="flex gap-2 items-center justify-center text-center p-2 md:p-4 md:text-[20px] font-bold bg-[#87806B]"
+				class="flex gap-2 items-center justify-center text-center p-2 md:p-4 md:text-[20px] font-bold bg-[#F3B23A]"
 			>
 				<svg
 					class="size-[20px] fill-white"
@@ -36,11 +38,12 @@ import VideoEmbed from "./VideoEmbed.astro";
 				>
 				Clic para activar sonido
 			</p>
-			<div class="bg-gray-300 w-full aspect-video">
+			<div class="bg-[#F3B23A] w-full aspect-video">
 				<VideoEmbed />
 			</div>
 		</div>
-		<ul
+		<p class="text-[14px] text-center mt-4">Sin renunciar a la técnica ni a tus formas, descubrí cómo aplicar los principios del Vastu para crear espacios con coherencia energética y propósito.</p>
+		<!-- <ul
 			class="flex gap-y-4 gap-x-8 flex-wrap md:justify-center mt-8 relative z-50 font-semibold"
 		>
 			<li class="flex items-center gap-4 text-white/90">
@@ -91,21 +94,11 @@ import VideoEmbed from "./VideoEmbed.astro";
 				Aprendé un Método paso a paso para armonizar cualquier Espacio, creando
 				Salud y Bienestar.
 			</li>
-		</ul>
+		</ul> -->
 
-		<div class="mt-8 relative flex flex-wrap-reverse justify-center gap-4 md:gap-8 px-4">
-			<div class="size-[880px] top-[calc(50%-440px)] left-[calc(50%-440px)] rounded-full bg-[#87806B] absolute blur-[80px] opacity-50 md:opacity-100 md:blur-[300px]"></div>
-			<div class="relative z-50 w-full">
-				<a href="#calendly" class="iv-btn md:w-[400px] w-full mb-2 relative">Agendar llamada »</a>
-				<p class="text-center font-semibold text-[16px] relative">¡Resolvemos tus dudas sin compromiso!</p>
-			</div>
-			<div class="relative z-50 w-full">
-				<a href="https://onei.la/yqo" class="iv-btn md:w-[400px] w-full mb-2 relative">Comprar »</a>
-			</div>
-		</div>
-
-		<div class="relative z-50 mt-10">
-			<a class="block w-fit mx-auto underline text-white text-center" target="_blank" href="/programa/formacion-vastu-shastra.pdf">Hace clic acá para ver el Programa</a>
-		</div>
+		<Button />
+		<p class="text-center italic text-white/80 text-[14px] relative">
+			¡Resolve tus dudas y aprovecha el precio de este mes!
+		</p>
 	</div>
 </section>
