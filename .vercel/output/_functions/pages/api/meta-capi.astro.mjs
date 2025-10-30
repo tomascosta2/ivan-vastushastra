@@ -23,7 +23,7 @@ const POST = async ({ request }) => {
       eventSourceUrl,
       // string
       actionSource = "website",
-      eventId = "",
+      eventId = "schedule-" + Date.now(),
       // Opcionales (sin hash)
       email = "",
       phone = "",

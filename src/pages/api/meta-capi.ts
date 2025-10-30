@@ -34,7 +34,7 @@ export const POST: APIRoute = async ({ request }) => {
       eventTime,          // unix seconds (number)
       eventSourceUrl,     // string
       actionSource = 'website',
-      eventId = '',
+      eventId = 'schedule-' + Date.now(),
 
       // Opcionales (sin hash)
       email = '',
