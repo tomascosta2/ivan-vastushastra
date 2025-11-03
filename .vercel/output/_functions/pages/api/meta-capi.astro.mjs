@@ -52,8 +52,8 @@ const POST = async ({ request }) => {
           // útil para deduplicación
           user_data
         }
-      ]
-      //test_event_code: 'TEST98961'
+      ],
+      test_event_code: "TEST98961"
     };
     const fbRes = await fetch(`https://graph.facebook.com/v21.0/${PIXEL_ID}/events?access_token=${ACCESS_TOKEN}`, {
       method: "POST",
