@@ -1,4 +1,4 @@
-<section class="pt-[80px] pb-8 px-4 bg-[#87806B]" id="calendly">
+<section class="py-8 px-4 bg-[#87806B]" id="calendly">
 	<div class="max-w-[600px] mx-auto">
 		<h2
 			class="text-[20px] text-center md:text-[32px] leading-[120%] md:leading-[110%] font-bold text-white mb-4"
@@ -42,9 +42,32 @@
 <script is:inline>
 	function getCookie(name) {
 		const m = document.cookie.match(
-			new RegExp("(^| )" + name + "=([^;]+)"),
+			new RegExp("(?:^|; )" + encodeURIComponent(name) + "=([^;]*)"),
 		);
-		return m ? decodeURIComponent(m[2]) : "";
+		return m ? decodeURIComponent(m[1]) : "";
+	}
+
+	// Fallback: si no hay cookie, intentamos inferir desde localStorage con la misma lógica del modal
+	function isQualifiedFallbackFromStorage() {
+		try {
+			const answers = JSON.parse(
+				localStorage.getItem("qf_answers") || "{}",
+			);
+			const ocup = String(answers.ocupacion || "");
+			const comp = String(answers.compromiso || "");
+			const isTarget = ocup === "arquitecta" || ocup === "disenadora";
+			const hasCommitment = comp !== "explorando";
+			return isTarget && hasCommitment;
+		} catch {
+			return false;
+		}
+	}
+
+	function isQualified() {
+		const statusCookie =
+			getCookie("qf_status") || localStorage.getItem("qf_status") || "";
+		if (statusCookie) return statusCookie === "qualified";
+		return isQualifiedFallbackFromStorage();
 	}
 
 	// Crea un ID legible si Calendly no trae UUID (máx 128 chars)
@@ -77,6 +100,8 @@
 		}
 	}
 
+	console.log("Califica?", isQualified());
+
 	window.addEventListener("message", async function (e) {
 		if (e.origin !== "https://calendly.com") return;
 		if (!e?.data || typeof e.data !== "object") return;
@@ -85,33 +110,36 @@
 		if (typeof evt !== "string" || !evt.startsWith("calendly.")) return;
 
 		if (evt === "calendly.event_scheduled") {
-			// Intenta extraer UUID desde los URIs de Calendly
+			// Extraer UUIDs de Calendly
 			const eventUri = e.data?.payload?.event?.uri || "";
 			const inviteeUri = e.data?.payload?.invitee?.uri || "";
 			const fromEvent = eventUri.split("/").pop() || "";
 			const fromInvitee = inviteeUri.split("/").pop() || "";
-
-			// Prioriza invitee UUID (suele ser único por reserva); si no, usa event UUID; si no, fallback
 			const rawId = fromInvitee || fromEvent || fallbackEventId();
 			const eventId = sanitizeId(rawId);
 
+			// Datos complementarios
 			const email = localStorage.getItem("lead_email") || "";
 			const phone = localStorage.getItem("lead_phone") || "";
 			const fbp = getCookie("_fbp") || localStorage.getItem("fbp") || "";
 			const fbc = getCookie("_fbc") || localStorage.getItem("fbc") || "";
 
-			await sendMetaSchedule({
-				eventName: "Schedule",
-				eventTime: Math.floor(Date.now() / 1000),
-				eventSourceUrl: window.location.href,
-				actionSource: "website",
-				eventId, // 👈 ahora llega sí o sí
-				email,
-				phone,
-				fbp,
-				fbc,
-			});
+			// 👇 Enviar SOLO si está calificado
+			if (isQualified()) {
+				await sendMetaSchedule({
+					eventName: "Schedule",
+					eventTime: Math.floor(Date.now() / 1000),
+					eventSourceUrl: window.location.href,
+					actionSource: "website",
+					eventId,
+					email,
+					phone,
+					fbp,
+					fbc,
+				});
+			}
 
+			// Redirigir siempre al thankyou (califique o no)
 			window.location.assign("/thankyou");
 		}
 	});

@@ -1,0 +1,473 @@
+---
+const {
+	openLabel = "¿Califico para la formación?",
+	postUrl = "/api/qualify",
+	showTrigger = true,
+} = Astro.props;
+---
+
+<div
+	id="qualify-backdrop"
+	class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+>
+</div>
+
+<div
+	id="qualify-modal"
+	role="dialog"
+	aria-modal="true"
+	aria-labelledby="qf-title"
+	class="hidden fixed inset-0 z-50 flex items-center justify-center px-4"
+>
+	<div
+		class="w-full md:max-w-[720px] max-h-[calc(100vh-80px)] overflow-y-auto rounded-[20px] border border-white/10 bg-[#111] p-6 md:p-10 shadow-2xl"
+	>
+		<h2
+			id="qf-title"
+			class="text-[22px] md:text-[26px] font-semibold text-white leading-tight"
+		>
+			Ayudanos a saber si es para vos
+		</h2>
+		<p class="text-white/70 mt-2">3 preguntas. Menos de 60 segundos.</p>
+
+		<form
+			id="qf-form"
+			class="mt-6"
+			autocomplete="on"
+			data-post-url={postUrl}
+		>
+			<!-- Hidden state SIEMPRE presentes (para FormData) -->
+			<input type="hidden" name="motivo" />
+			<input type="hidden" name="ocupacion" />
+			<input type="hidden" name="compromiso" />
+
+			<!-- Contacto ocultos permanentes (se llenan desde el paso 1 visible) -->
+			<input type="hidden" name="name" id="qf-name-hidden" />
+			<input type="hidden" name="telefono" id="qf-telefono-hidden" />
+			<input type="hidden" name="email" id="qf-email-hidden" />
+
+			<div id="qf-steps" class="space-y-5 text-white">
+				<!-- contenido se inyecta por JS -->
+			</div>
+
+			<div class="mt-6 flex items-center justify-between gap-3">
+				<button
+					type="button"
+					id="qf-back"
+					class="px-4 py-3 rounded-lg border border-white/15 text-white/90 hover:bg-[#F3B23A]/10 transition disabled:opacity-40 disabled:cursor-not-allowed"
+					disabled>Atrás</button
+				>
+
+				<div class="flex items-center gap-2">
+					<button
+						type="button"
+						id="qf-next"
+						class="px-4 py-3 rounded-lg bg-[#F3B23A] text-[#111] hover:opacity-90 transition
+                   disabled:bg-zinc-600 disabled:text-white disabled:cursor-not-allowed disabled:opacity-90"
+						>Continuar</button
+					>
+
+					<button
+						type="submit"
+						id="qf-submit"
+						class="px-4 py-3 rounded-lg bg-[#F3B23A] text-[#111] hover:opacity-90 transition hidden
+                   disabled:bg-zinc-600 disabled:text-white disabled:cursor-not-allowed disabled:opacity-90"
+						>Aceptar y Agendar</button
+					>
+				</div>
+			</div>
+
+			<p id="qf-msg" class="hidden text-sm mt-4"></p>
+			<p class="text-white/50 text-xs mt-6">
+				PD: Esta breve calificación nos ayuda a orientarte mejor antes
+				de agendar.
+			</p>
+		</form>
+	</div>
+</div>
+
+<script is:inline>
+	const $ = (s, r = document) => r.querySelector(s);
+	const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+	const modal = $("#qualify-modal");
+	const backdrop = $("#qualify-backdrop");
+	const openers = $$("[data-open-qualify]");
+	const closers = $$("[data-close-qualify]");
+	const form = $("#qf-form");
+	const stepsHost = $("#qf-steps");
+	const backBtn = $("#qf-back");
+	const nextBtn = $("#qf-next");
+	const submitBtn = $("#qf-submit");
+	const msg = $("#qf-msg");
+
+	let lastFocused = null;
+	let stepIndex = 0;
+
+	// ---- PASOS ----
+	const steps = [
+		{
+			id: "contact",
+			type: "contact",
+			title: "Antes de empezar, dejános tus datos",
+			subtitle:
+				"Así podemos orientarte y, si corresponde, enviarte el acceso para agendar.",
+			fields: [
+				{
+					name: "name",
+					label: "Nombre y apellido",
+					type: "text",
+					autocomplete: "name",
+					required: true,
+				},
+				{
+					name: "telefono",
+					label: "Teléfono (WhatsApp)",
+					type: "tel",
+					autocomplete: "tel",
+					required: true,
+				},
+				{
+					name: "email",
+					label: "Correo electrónico",
+					type: "email",
+					autocomplete: "email",
+					required: true,
+				},
+			],
+		},
+		{
+			id: "motivo",
+			title: "¿Por qué te interesó la formación?",
+			subtitle: "Elegí la opción que más te represente.",
+			type: "single",
+			options: [
+				{
+					value: "alinear-energia-hogar",
+					label: "Quiero alinear la energía de mi hogar y mi vida",
+				},
+				{
+					value: "aplicarlo-proyectos",
+					label: "Quiero aplicarlo en mis proyectos profesionales",
+				},
+				{
+					value: "bienestar-claridad",
+					label: "Busco mayor bienestar, descanso y claridad",
+				},
+				{
+					value: "formacion-profunda",
+					label: "Me interesa una formación profunda con base espiritual",
+				},
+			],
+		},
+		{
+			id: "ocupacion",
+			title: "¿A qué te dedicás?",
+			subtitle: "Esto nos ayuda a orientarte mejor.",
+			type: "single",
+			options: [
+				{ value: "arquitecta", label: "Soy arquitecto/a" },
+				{ value: "disenadora", label: "Soy diseñador/a" },
+				{ value: "otro", label: "Otro" },
+			],
+		},
+		{
+			id: "compromiso",
+			title: "¿Qué nivel de profundidad te gustaría tener en la formación?",
+			subtitle: "Elegí el enfoque que más resuene con tu momento actual.",
+			type: "single",
+			options: [
+				{
+					value: "base-practica",
+					label: "Solo una base para interiorizarme un poco",
+				},
+				{
+					value: "proceso-profundo",
+					label: "Un proceso más profundo y completo para empezar a aplicarlo",
+				},
+				{
+					value: "explorando",
+					label: "Todavía no estoy seguro/a, quiero explorar",
+				},
+			],
+		},
+	];
+
+	function openModal() {
+		lastFocused = document.activeElement;
+		backdrop.classList.remove("hidden");
+		modal.classList.remove("hidden");
+		document.addEventListener("keydown", escClose);
+		renderStep();
+		setTimeout(() => {
+			const first = stepsHost.querySelector(
+				".qf-card, input, select, textarea, button",
+			);
+			if (first && first.focus) first.focus();
+		}, 0);
+	}
+	function closeModal() {
+		backdrop.classList.add("hidden");
+		modal.classList.add("hidden");
+		document.removeEventListener("keydown", escClose);
+		if (lastFocused) lastFocused.focus();
+	}
+	function escClose(e) {
+		if (e.key === "Escape") closeModal();
+	}
+
+	openers.forEach((b) => b.addEventListener("click", openModal));
+	closers.forEach((b) => b.addEventListener("click", closeModal));
+	backdrop.addEventListener("click", (e) => {
+		if (e.target === backdrop) closeModal();
+	});
+
+	function cardHTML({ value, label, selected }) {
+		return `
+      <button type="button" class="qf-card" data-value="${value}" data-selected="${selected ? "true" : "false"}">
+        <div class="flex items-start justify-between gap-3">
+          <div class="text-base leading-[1.25]">${label}</div>
+          <div class="shrink-0 w-5 h-5 rounded-full border ${selected ? "bg-[#111] border-[#111]" : "border-white/40"}"></div>
+        </div>
+      </button>
+    `;
+	}
+
+	function contactHTML(step) {
+		const inputs = step.fields
+			.map((f) => {
+				const attrs = [
+					`type="${f.type}"`,
+					`id="qf-${f.name}-visible"`, // sin name (evita duplicados), sincroniza a los ocultos
+					f.autocomplete ? `autocomplete="${f.autocomplete}"` : "",
+					`class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/15 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/20"`,
+					f.required ? "required" : "",
+					`placeholder="${f.label}"`,
+				]
+					.filter(Boolean)
+					.join(" ");
+				return `
+        <label class="block">
+          <span class="text-sm text-white/80">${f.label}</span>
+          <input ${attrs} />
+        </label>
+      `;
+			})
+			.join(``);
+		return `<div class="mt-3 space-y-3">${inputs}</div>`;
+	}
+
+	function syncContactHidden() {
+		const nameV = ($("#qf-name-visible")?.value || "").trim();
+		const telV = ($("#qf-telefono-visible")?.value || "").trim();
+		const mailV = ($("#qf-email-visible")?.value || "").trim();
+		$("#qf-name-hidden").value = nameV;
+		$("#qf-telefono-hidden").value = telV;
+		$("#qf-email-hidden").value = mailV;
+	}
+
+	function renderStep() {
+		const step = steps[stepIndex];
+		const header = `
+      <h3 class="text-lg md:text-xl font-semibold text-white mb-0">${step.title}</h3>
+      ${step.subtitle ? `<p class="text-white/70 mt-2">${step.subtitle}</p>` : ""}
+    `;
+		let body = "";
+
+		if (step.type === "contact") {
+			body = contactHTML(step);
+		} else if (step.type === "single") {
+			const currentValue = form.elements[step.id].value || "";
+			const cards = step.options
+				.map((op) =>
+					cardHTML({ ...op, selected: currentValue === op.value }),
+				)
+				.join("");
+			body = `<div class="qf-grid mt-3">${cards}</div>`;
+		}
+
+		stepsHost.innerHTML = header + body;
+
+		// Listeners para SINGLE
+		if (step.type === "single") {
+			$$(".qf-card", stepsHost).forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const val = btn.getAttribute("data-value");
+					form.elements[step.id].value = val;
+					$$(".qf-card", stepsHost).forEach((b) =>
+						b.setAttribute("data-selected", "false"),
+					);
+					btn.setAttribute("data-selected", "true");
+					setTimeout(() => {
+						if (stepIndex < steps.length - 1) {
+							stepIndex++;
+							renderStep();
+							updateControls();
+						} else {
+							updateControls();
+						}
+					}, 120);
+				});
+			});
+		}
+
+		// Listeners para CONTACT: sincronizar ocultos y validar
+		if (step.type === "contact") {
+			["name", "telefono", "email"].forEach((n) => {
+				const el = $(`#qf-${n}-visible`, stepsHost);
+				if (el)
+					el.addEventListener("input", () => {
+						syncContactHidden();
+						updateControls();
+					});
+			});
+			// Por si el navegador autocompleta
+			setTimeout(() => {
+				syncContactHidden();
+				updateControls();
+			}, 0);
+		}
+
+		updateControls();
+	}
+
+	function canAdvance() {
+		const s = steps[stepIndex];
+		if (s.type === "contact") {
+			const name = ($("#qf-name-hidden")?.value || "").trim();
+			const tel = ($("#qf-telefono-hidden")?.value || "").trim();
+			const email = ($("#qf-email-hidden")?.value || "").trim();
+			const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+			return name.length > 1 && tel.length >= 6 && emailOk;
+		}
+		return !!form.elements[s.id].value;
+	}
+
+	function updateControls() {
+		backBtn.disabled = stepIndex === 0;
+		const isLast = stepIndex === steps.length - 1;
+
+		nextBtn.classList.toggle("hidden", isLast);
+		submitBtn.classList.toggle("hidden", !isLast);
+
+		nextBtn.disabled = !canAdvance();
+		if (isLast) {
+			submitBtn.disabled = !canAdvance();
+		} else {
+			submitBtn.disabled = true;
+		}
+	}
+
+	$("#qf-back").addEventListener("click", () => {
+		stepIndex = Math.max(0, stepIndex - 1);
+		renderStep();
+	});
+	$("#qf-next").addEventListener("click", () => {
+		if (!canAdvance()) return;
+		stepIndex = Math.min(steps.length - 1, stepIndex + 1);
+		renderStep();
+	});
+
+	// Bloquear submit con Enter en pasos intermedios; si el paso está válido, avanzar
+	form.addEventListener("keydown", (e) => {
+		if (e.key !== "Enter") return;
+		const isLast = stepIndex === steps.length - 1;
+		if (!isLast) {
+			e.preventDefault();
+			if (canAdvance()) {
+				stepIndex = Math.min(steps.length - 1, stepIndex + 1);
+				renderStep();
+			}
+		}
+	});
+
+	function setCookie(name, value, days = 90) {
+		const maxAge = days * 24 * 60 * 60; // segundos
+		document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax`;
+	}
+
+	// Regla de calificación (editá a gusto)
+	function computeQualified(data) {
+		const ocup = String(data.ocupacion || "");
+		const comp = String(data.compromiso || "");
+		const isTarget = ocup === "arquitecta" || ocup === "disenadora";
+		const hasCommitment = comp === "proceso-profundo";
+		return isTarget && hasCommitment;
+	}
+
+	form.addEventListener("submit", async (e) => {
+		e.preventDefault();
+		msg.classList.add("hidden");
+		const postUrl = form.dataset.postUrl || "/api/qualify";
+		const data = Object.fromEntries(new FormData(form).entries());
+
+		// Validación mínima de contacto (desde ocultos)
+		const name = ($("#qf-name-hidden")?.value || "").trim();
+		const tel = ($("#qf-telefono-hidden")?.value || "").trim();
+		const email = ($("#qf-email-hidden")?.value || "").trim();
+		const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+		if (!name || !tel || !emailOk) {
+			msg.textContent = "Completá nombre, teléfono y un correo válido.";
+			msg.className = "text-sm mt-4 text-red-400";
+			msg.classList.remove("hidden");
+			stepIndex = 0;
+			renderStep();
+			return;
+		}
+
+		// Verificar opciones single requeridas
+		for (const s of steps) {
+			if (s.type === "single" && !data[s.id]) {
+				msg.textContent =
+					"Completá todas las preguntas para continuar.";
+				msg.className = "text-sm mt-4 text-red-400";
+				msg.classList.remove("hidden");
+				return;
+			}
+		}
+
+		// 👇 NUEVO: calcular si está calificado y guardar cookie SOLO si lo está
+		const qualified = computeQualified(data);
+		if (qualified) {
+			setCookie("qf_status", "qualified", 90);
+			try {
+				localStorage.setItem("qf_status", "qualified");
+			} catch {}
+		}
+
+		try {
+			const res = await fetch(postUrl, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(data),
+			});
+			if (!res.ok) throw new Error("Error al enviar");
+
+			msg.textContent = "¡Listo! Te llevamos a agendar.";
+			msg.className = "text-sm mt-4 text-green-400";
+			msg.classList.remove("hidden");
+			try {
+				window.fbq && fbq("trackCustom", "QualifiedLead", data);
+			} catch {}
+
+			setTimeout(() => {
+				window.location = "/calendar";
+			}, 500);
+		} catch {
+			msg.textContent =
+				"No pudimos enviar el formulario. Probá de nuevo en unos segundos.";
+			msg.className = "text-sm mt-4 text-red-400";
+			msg.classList.remove("hidden");
+		}
+	});
+
+	// Apertura delegada
+	document.addEventListener("click", (e) => {
+		const t = e.target && e.target.closest("[data-open-qualify]");
+		if (t) {
+			e.preventDefault();
+			openModal();
+		}
+	});
+</script>
