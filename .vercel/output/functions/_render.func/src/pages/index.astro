@@ -1,0 +1,28 @@
+---
+import Calendly from "../components/Calendly.astro";
+import Copy from "../components/Copy.astro";
+import Faqs from "../components/Faqs.astro";
+import Hero from "../components/Hero.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Layout from "../layouts/Layout.astro";
+
+import QualifyPopup from "../components/Popup.astro";
+---
+
+<Layout>
+	<Hero />
+	<Testimonials />
+	<QualifyPopup
+		openLabel="¿Califico para la formación?"
+		postUrl="/api/qualify"
+		showTrigger={true}
+	/>
+	<!-- <Copy /> -->
+	<!-- <Calendly /> -->
+	<!-- <Faqs /> -->
+	<script is:inline>
+		window.addEventListener("load", () => {
+			fbq("track", "PageView");
+		});
+	</script>
+</Layout>
