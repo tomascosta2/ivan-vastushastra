@@ -26,6 +26,18 @@
 		{
 			"src": "^/api/qualify/?$",
 			"dest": "_render"
+		},
+		{
+			"src": "^/calendar/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/thankyou/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
 		}
 	]
 }
