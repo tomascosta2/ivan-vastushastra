@@ -407,6 +407,9 @@ const {
 		const email = ($("#qf-email-hidden")?.value || "").trim();
 		const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+		localStorage.setItem("lead_phone", tel)
+		localStorage.setItem("lead_email", email)
+
 		if (!name || !tel || !emailOk) {
 			msg.textContent = "Completá nombre, teléfono y un correo válido.";
 			msg.className = "text-sm mt-4 text-red-400";

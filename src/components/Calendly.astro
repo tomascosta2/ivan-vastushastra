@@ -102,6 +102,23 @@
 
 	console.log("Califica?", isQualified());
 
+	// Datos complementarios
+	const email = localStorage.getItem("lead_email") || "";
+	const phone = localStorage.getItem("lead_phone") || "";
+	const fbp = getCookie("_fbp") || localStorage.getItem("fbp") || "";
+	const fbc = getCookie("_fbc") || localStorage.getItem("fbc") || "";
+
+	console.log(
+		"Data para Meta: ",
+		email,
+		" - ",
+		phone,
+		" - ",
+		fbp,
+		" - ",
+		fbc,
+	);
+
 	window.addEventListener("message", async function (e) {
 		if (e.origin !== "https://calendly.com") return;
 		if (!e?.data || typeof e.data !== "object") return;
@@ -110,20 +127,6 @@
 		if (typeof evt !== "string" || !evt.startsWith("calendly.")) return;
 
 		if (evt === "calendly.event_scheduled") {
-			// Extraer UUIDs de Calendly
-			const eventUri = e.data?.payload?.event?.uri || "";
-			const inviteeUri = e.data?.payload?.invitee?.uri || "";
-			const fromEvent = eventUri.split("/").pop() || "";
-			const fromInvitee = inviteeUri.split("/").pop() || "";
-			const rawId = fromInvitee || fromEvent || fallbackEventId();
-			const eventId = sanitizeId(rawId);
-
-			// Datos complementarios
-			const email = localStorage.getItem("lead_email") || "";
-			const phone = localStorage.getItem("lead_phone") || "";
-			const fbp = getCookie("_fbp") || localStorage.getItem("fbp") || "";
-			const fbc = getCookie("_fbc") || localStorage.getItem("fbc") || "";
-
 			// 👇 Enviar SOLO si está calificado
 			if (isQualified()) {
 				await sendMetaSchedule({
