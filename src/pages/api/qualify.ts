@@ -1,7 +1,6 @@
 export const prerender = false;
 
-// src/pages/api/qualify.ts
-import type { APIRoute } from "astro";
+import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
