@@ -146,4 +146,8 @@
 			window.location.assign("/thankyou");
 		}
 	});
+
+	window.addEventListener("load", () => {
+		fbq("track", "Lead");
+	});
 </script>
