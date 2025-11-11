@@ -1,95 +1,61 @@
 ---
 import Button from "./Button.astro";
 import VideoEmbed from "./VideoEmbed.astro";
+
+// === A/B CONFIG ===
+const COOKIE = "ab_vastu_title";
+const titles: Record<'A'|'B', string> = { 
+	A: `El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…
+  	Porque no es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>`,
+  	B: `No se trata de cómo se ve, sino de cómo se siente. <span class="text-[#F3B23A]">Aprendé a crear Espacios desde la Energía, con Propósito y Armonía</span> a través del Vastu Shastra.`,
+};
+type Variant = 'A' | 'B';
+
+// 1) Permitir override por query (?ab=A|B)
+const urlAb = Astro.url?.searchParams.get("ab");
+const qpVariant = urlAb === "A" || urlAb === "B" ? urlAb : null;
+
+// 2) Leer cookie existente
+const cookieVariant = Astro.cookies.get(COOKIE)?.value;
+let variant = (qpVariant ?? cookieVariant ?? (Math.random() < 0.5 ? 'A' : 'B')) as Variant;
+
+// 3) Persistir cookie (90 días). httpOnly en false para que puedas leerla desde el cliente si querés.
+Astro.cookies.set(COOKIE, variant, {
+  path: "/",
+  maxAge: 60 * 60 * 24 * 90,
+  sameSite: "lax",
+  httpOnly: false,
+});
 ---
 
-<section class="pt-[32px] pb-16 md:py-[60px] px-4 relative overflow-hidden">
-	<div
-		class="md:size-[880px] rounded-full bg-[#F3B23A] absolute blur-[90px] md:blur-[300px] md:-left-[440px] md:-top-[440px]"
-	>
-	</div>
-	<div class="max-w-[890px] mx-auto relative">
-		<!-- <img
-			class="h-[40px] md:h-[60px] mx-auto mb-8"
-			src="/images/vastu-shastra.webp"
-			alt="Ivan Vastu Shastra"
-		/> -->
-		<span class="text-center mx-auto text-[14px] block w-fit bg-[#F3B23A]/20 border border-[#F3B23A]/40 py-2 px-6 rounded-full">¿Querés crear espacios con armonía?</span>
-		<h1
-			class="text-[20px] md:text-[32px] text-center font-bold my-4 leading-[120%] md:leading-[110%]"
-		>
-			El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…
-			Porque no es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
-		</h1>
-		<div
-			class="max-w-[700px] mx-auto z-50 border-4 border-[#F3B23A] rounded-lg overflow-hidden relative"
-		>
-			<p
-				class="flex gap-2 items-center justify-center text-center p-2 md:p-4 md:text-[20px] font-bold bg-[#F3B23A]"
-			>
-				Mira el video completo y agenda tu consulta
-			</p>
-			<div class="bg-[#F3B23A] w-full aspect-video">
-				<VideoEmbed />
-			</div>
-		</div>
-		<p class="max-w-[700px] mx-auto text-[14px] md:text-[16px] text-center mt-4">Sin renunciar a la técnica ni a tus formas, descubrí cómo aplicar los principios del Vastu para crear espacios con coherencia energética y propósito.</p>
-		<!-- <ul
-			class="flex gap-y-4 gap-x-8 flex-wrap md:justify-center mt-8 relative z-50 font-semibold"
-		>
-			<li class="flex items-center gap-4 text-white/90">
-				<svg
-					class="min-w-[22px]"
-					width="20"
-					height="18"
-					viewBox="0 0 20 18"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M19.5815 0.50724C20.1395 1.18356 20.1395 2.2819 19.5815 2.95822L8.15422 16.8092C7.59625 17.4856 6.6901 17.4856 6.13213 16.8092L0.41848 9.88373C-0.139493 9.20741 -0.139493 8.10907 0.41848 7.43275C0.976454 6.75643 1.8826 6.75643 2.44058 7.43275L7.14541 13.1301L17.5639 0.50724C18.1219 -0.16908 19.028 -0.16908 19.586 0.50724H19.5815Z"
-						fill="#C09648"></path>
-				</svg>
-				Descubrí cómo un bloqueo en la energía de tus Espacios, también bloquea
-				tu Vida.
-			</li>
-			<li class="flex items-center gap-4 text-white/90">
-				<svg
-					class="min-w-[22px]"
-					width="20"
-					height="18"
-					viewBox="0 0 20 18"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M19.5815 0.50724C20.1395 1.18356 20.1395 2.2819 19.5815 2.95822L8.15422 16.8092C7.59625 17.4856 6.6901 17.4856 6.13213 16.8092L0.41848 9.88373C-0.139493 9.20741 -0.139493 8.10907 0.41848 7.43275C0.976454 6.75643 1.8826 6.75643 2.44058 7.43275L7.14541 13.1301L17.5639 0.50724C18.1219 -0.16908 19.028 -0.16908 19.586 0.50724H19.5815Z"
-						fill="#C09648"></path>
-				</svg>
-				Incorporá Herramientas sutiles para desbloquear la Energía y permitir
-				que todo vuelva a fluir.
-			</li>
-			<li class="flex items-center gap-4 text-white/90">
-				<svg
-					class="min-w-[22px]"
-					width="20"
-					height="18"
-					viewBox="0 0 20 18"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M19.5815 0.50724C20.1395 1.18356 20.1395 2.2819 19.5815 2.95822L8.15422 16.8092C7.59625 17.4856 6.6901 17.4856 6.13213 16.8092L0.41848 9.88373C-0.139493 9.20741 -0.139493 8.10907 0.41848 7.43275C0.976454 6.75643 1.8826 6.75643 2.44058 7.43275L7.14541 13.1301L17.5639 0.50724C18.1219 -0.16908 19.028 -0.16908 19.586 0.50724H19.5815Z"
-						fill="#C09648"></path>
-				</svg>
-				Aprendé un Método paso a paso para armonizar cualquier Espacio, creando
-				Salud y Bienestar.
-			</li>
-		</ul> -->
+<section class="pt-[32px] pb-16 md:py-[60px] px-4 relative overflow-hidden" data-ab-title={variant}>
+  <div class="md:size-[880px] rounded-full bg-[#F3B23A] absolute blur-[90px] md:blur-[300px] md:-left-[440px] md:-top-[440px]"></div>
 
-		<Button />
-		<p class="text-center italic text-white/80 text-[14px] relative">
-			¡Resolve tus dudas y aprovecha el precio de este mes!
-		</p>
-	</div>
+  <div class="max-w-[890px] mx-auto relative">
+    <span class="text-center mx-auto text-[14px] block w-fit bg-[#F3B23A]/20 border border-[#F3B23A]/40 py-2 px-6 rounded-full">¿Querés crear espacios con armonía?</span>
+
+    <!-- Título con A/B -->
+    <h1
+      class="text-[20px] md:text-[32px] text-center font-bold my-4 leading-[120%] md:leading-[110%]"
+      set:html={titles[variant]}
+    />
+
+    <div class="max-w-[700px] mx-auto z-50 border-4 border-[#F3B23A] rounded-lg overflow-hidden relative">
+      <p class="flex gap-2 items-center justify-center text-center p-2 md:p-4 md:text-[20px] font-bold bg-[#F3B23A]">
+        Mira el video completo y agenda tu consulta
+      </p>
+      <div class="bg-[#F3B23A] w-full aspect-video">
+        <VideoEmbed />
+      </div>
+    </div>
+
+    <p class="max-w-[700px] mx-auto text-[14px] md:text-[16px] text-center mt-4">
+      Sin renunciar a la técnica ni a tus formas, descubrí cómo aplicar los principios del Vastu para crear espacios con coherencia energética y propósito.
+    </p>
+
+    <Button />
+    <p class="text-center italic text-white/80 text-[14px] relative">
+      ¡Resolve tus dudas y aprovecha el precio de este mes!
+    </p>
+  </div>
 </section>
