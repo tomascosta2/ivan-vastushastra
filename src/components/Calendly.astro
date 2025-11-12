@@ -132,7 +132,7 @@
 		if (evt === "calendly.event_scheduled") {
 			// 👇 Enviar SOLO si está calificado
 			if (isQ) {
-				console.log("entra al evento")
+				console.log("entra al evento");
 				await sendMetaSchedule({
 					eventName: "Schedule",
 					eventTime: Math.floor(Date.now() / 1000),
@@ -147,7 +147,11 @@
 			}
 
 			// Redirigir siempre al thankyou (califique o no)
-			window.location = "/thankyou?event_id=" + eventId;
+			window.location = "/thankyou?event_id=" + ev;
 		}
+	});
+
+	window.addEventListener("load", () => {
+		fbq("track", "Lead");
 	});
 </script>

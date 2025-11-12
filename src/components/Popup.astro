@@ -450,9 +450,6 @@ const {
 			msg.textContent = "¡Listo! Te llevamos a agendar.";
 			msg.className = "text-sm mt-4 text-green-400";
 			msg.classList.remove("hidden");
-			try {
-				window.fbq && fbq("track", "Lead", data);
-			} catch {}
 
 			setTimeout(() => {
 				window.location = "/calendar";
