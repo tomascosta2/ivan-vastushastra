@@ -146,6 +146,17 @@
 				});
 			}
 
+			await fetch(
+				"https://hook.us2.make.com/5vkgddg57kuana2jmn2evmvhch3ws8p8",
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						email
+					}),
+				},
+			);
+
 			// Redirigir siempre al thankyou (califique o no)
 			window.location = "/thankyou?event_id=" + ev;
 		}
