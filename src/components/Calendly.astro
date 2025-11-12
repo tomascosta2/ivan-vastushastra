@@ -7,19 +7,12 @@
 			juntos si esta Formación es para vos.
 		</h2>
 		<p class="text-center">¡Aprovecha el precio especial de este mes!</p>
-		<!-- Calendly inline widget begin -->
-		<div
-			class="calendly-inline-widget mt-8"
-			data-url="https://calendly.com/dacharryi/consulta-online-formacion-vastu-shastra?hide_gdpr_banner=1&embed_domain=formacionvastushastra.com&embed_type=Inline"
-			style="min-width:320px;height:700px;"
-		>
-			<!-- data-url="https://calendly.com/dacharryi/consulta-online-formacion-vastu-shastra?hide_gdpr_banner=1&embed_domain=formacionvastushastra.com&embed_type=Inline" -->
-		</div>
-		<script
-			type="text/javascript"
-			src="https://assets.calendly.com/assets/external/widget.js"
-			async></script>
-		<!-- Calendly inline widget end -->
+		<iframe
+			src="https://calendly.com/dacharryi/consulta-online-formacion-vastu-shastra?hide_gdpr_banner=1&embed_domain=formacionvastushastra.com&embed_type=Inline"
+			class="w-full mt-8 min-h-[990px]"
+			title="Calendly - Consulta Online Formación Vastu Shastra"
+			loading="lazy"
+			allowtransparency="true"></iframe>
 	</div>
 	<img
 		class="h-[60px] mt-8 md:h-[60px] mx-auto mb-8"
@@ -146,19 +139,22 @@
 				});
 			}
 
-			await fetch(
+			// Marcamos en el Sheet que si agendo
+			fetch(
 				"https://hook.us2.make.com/5vkgddg57kuana2jmn2evmvhch3ws8p8",
 				{
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
-						email
+						email,
 					}),
 				},
 			);
+ 
+			const ty_url = "/thankyou?event_id=" + eventId;
 
 			// Redirigir siempre al thankyou (califique o no)
-			window.location = "/thankyou?event_id=" + ev;
+			window.location = ty_url;
 		}
 	});
 
