@@ -43,8 +43,9 @@ import Layout from "../layouts/Layout.astro";
 	</section>
 	<script is:inline>
 		window.addEventListener('load', () => {
-			fbq('track', 'CompleteRegistration');
-			fbq('track', 'Schedule', {}, {eventId: 'schedule-' + Date.now()});
+			let params = new URLSearchParams(document.location.search);
+			let eventId = params.get("event_id");
+			fbq('track', 'Schedule', {}, {eventId: eventId });
 		})
 	</script>
 </Layout>

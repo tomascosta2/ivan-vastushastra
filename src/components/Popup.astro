@@ -451,7 +451,7 @@ const {
 			msg.className = "text-sm mt-4 text-green-400";
 			msg.classList.remove("hidden");
 			try {
-				window.fbq && fbq("trackCustom", "QualifiedLead", data);
+				window.fbq && fbq("track", "Lead", data);
 			} catch {}
 
 			setTimeout(() => {

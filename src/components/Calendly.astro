@@ -102,6 +102,9 @@
 
 	console.log("Califica?", isQualified());
 
+	const isQ = isQualified();
+	const eventId = fallbackEventId();
+
 	// Datos complementarios
 	const email = localStorage.getItem("lead_email") || "";
 	const phone = localStorage.getItem("lead_phone") || "";
@@ -128,7 +131,8 @@
 
 		if (evt === "calendly.event_scheduled") {
 			// 👇 Enviar SOLO si está calificado
-			if (isQualified()) {
+			if (isQ) {
+				console.log("entra al evento")
 				await sendMetaSchedule({
 					eventName: "Schedule",
 					eventTime: Math.floor(Date.now() / 1000),
@@ -143,11 +147,7 @@
 			}
 
 			// Redirigir siempre al thankyou (califique o no)
-			window.location.assign("/thankyou");
+			window.location = "/thankyou?event_id=" + eventId;
 		}
-	});
-
-	window.addEventListener("load", () => {
-		fbq("track", "Lead");
 	});
 </script>
