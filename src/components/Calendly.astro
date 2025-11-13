@@ -8,7 +8,7 @@
 		</h2>
 		<p class="text-center">¡Aprovecha el precio especial de este mes!</p>
 		<iframe
-			src="https://calendly.com/dacharryi/consulta-online-formacion-vastu-shastra?hide_gdpr_banner=1&embed_domain=formacionvastushastra.com&embed_type=Inline"
+			id="calendly-frame"
 			class="w-full mt-8 min-h-[990px]"
 			title="Calendly - Consulta Online Formación Vastu Shastra"
 			loading="lazy"
@@ -33,6 +33,26 @@
 </section>
 
 <script is:inline>
+	const calendalyBase = "https://calendly.com/dacharryi/consulta-online-formacion-vastu-shastra"
+
+	// Se ejecuta únicamente en el navegador
+	const name = localStorage.getItem("lead_name") || "";
+	const email = localStorage.getItem("lead_email") || "";
+
+	const params = new URLSearchParams({
+		hide_gdpr_banner: "1",
+		embed_domain: "formacionvastushastra.com",
+		embed_type: "Inline",
+		name,
+		email,
+	});
+
+	document.getElementById("calendly-frame").src =
+		calendalyBase + "?" + params.toString();
+
+	// --------------
+	
+	
 	function getCookie(name) {
 		const m = document.cookie.match(
 			new RegExp("(?:^|; )" + encodeURIComponent(name) + "=([^;]*)"),
@@ -99,7 +119,6 @@
 	const eventId = fallbackEventId();
 
 	// Datos complementarios
-	const email = localStorage.getItem("lead_email") || "";
 	const phone = localStorage.getItem("lead_phone") || "";
 	const fbp = getCookie("_fbp") || localStorage.getItem("fbp") || "";
 	const fbc = getCookie("_fbc") || localStorage.getItem("fbc") || "";
@@ -123,7 +142,6 @@
 		if (typeof evt !== "string" || !evt.startsWith("calendly.")) return;
 
 		if (evt === "calendly.event_scheduled") {
-
 			// Marcamos en el Sheet que si agendo
 			fetch(
 				"https://hook.us2.make.com/5vkgddg57kuana2jmn2evmvhch3ws8p8",
@@ -134,7 +152,7 @@
 						email,
 					}),
 				},
-			).catch(err => console.error('Tracking error:', err));
+			).catch((err) => console.error("Tracking error:", err));
 
 			// 👇 Enviar SOLO si está calificado
 			if (isQ) {

@@ -407,6 +407,7 @@ const {
 		const email = ($("#qf-email-hidden")?.value || "").trim();
 		const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+		localStorage.setItem("lead_name", name)
 		localStorage.setItem("lead_phone", tel)
 		localStorage.setItem("lead_email", email)
 

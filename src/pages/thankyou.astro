@@ -46,7 +46,8 @@ import Layout from "../layouts/Layout.astro";
 			let params = new URLSearchParams(document.location.search);
 			let eventId = params.get("event_id");
 			if (eventId) {
-				fbq('track', 'Schedule', {}, {eventId: eventId });
+				console.log("trakeado con pixel")
+				//fbq('track', 'Schedule', {}, {eventId: eventId });
 			}
 		})
 	</script>
