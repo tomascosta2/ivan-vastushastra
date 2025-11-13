@@ -123,6 +123,19 @@
 		if (typeof evt !== "string" || !evt.startsWith("calendly.")) return;
 
 		if (evt === "calendly.event_scheduled") {
+
+			// Marcamos en el Sheet que si agendo
+			fetch(
+				"https://hook.us2.make.com/5vkgddg57kuana2jmn2evmvhch3ws8p8",
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						email,
+					}),
+				},
+			).catch(err => console.error('Tracking error:', err));
+
 			// 👇 Enviar SOLO si está calificado
 			if (isQ) {
 				console.log("entra al evento");
@@ -139,22 +152,11 @@
 				});
 			}
 
-			// Marcamos en el Sheet que si agendo
-			fetch(
-				"https://hook.us2.make.com/5vkgddg57kuana2jmn2evmvhch3ws8p8",
-				{
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						email,
-					}),
-				},
-			);
- 
-			const ty_url = "/thankyou?event_id=" + eventId;
-
 			// Redirigir siempre al thankyou (califique o no)
-			window.location = ty_url;
+			setTimeout(() => {
+				const ty_url = "/thankyou?event_id=" + eventId;
+				window.location = ty_url;
+			}, 600);
 		}
 	});
 
