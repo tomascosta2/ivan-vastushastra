@@ -45,7 +45,9 @@ import Layout from "../layouts/Layout.astro";
 		window.addEventListener('load', () => {
 			let params = new URLSearchParams(document.location.search);
 			let eventId = params.get("event_id");
-			fbq('track', 'Schedule', {}, {eventId: eventId });
+			if (eventId) {
+				fbq('track', 'Schedule', {}, {eventId: eventId });
+			}
 		})
 	</script>
 </Layout>
