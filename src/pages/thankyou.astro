@@ -47,7 +47,7 @@ import Layout from "../layouts/Layout.astro";
 			let eventId = params.get("event_id");
 			if (eventId) {
 				console.log("trakeado con pixel")
-				//fbq('track', 'Schedule', {}, {eventId: eventId });
+				fbq('track', 'Schedule', {}, {eventId: eventId });
 			}
 		})
 	</script>
