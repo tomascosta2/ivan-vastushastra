@@ -45,9 +45,11 @@ import Layout from "../layouts/Layout.astro";
 		window.addEventListener('load', () => {
 			let params = new URLSearchParams(document.location.search);
 			let eventId = params.get("event_id");
+    		console.log("Event ID: ", eventId)
 			if (eventId) {
 				console.log("trakeado con pixel")
-				fbq('track', 'Schedule', {}, {eventId: eventId });
+				fbq('track', 'Schedule', {}, { eventID: eventId });
+
 			}
 		})
 	</script>

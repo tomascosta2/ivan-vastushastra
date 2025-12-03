@@ -71,6 +71,8 @@ export const POST: APIRoute = async ({ request }) => {
 	    //test_event_code: 'TEST17983'
     };
 
+    console.log("Event ID: ", eventId)
+
     const fbRes = await fetch(`https://graph.facebook.com/v21.0/${PIXEL_ID}/events?access_token=${ACCESS_TOKEN}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
