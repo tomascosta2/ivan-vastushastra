@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const modules = [ { id: "mod-0", title: "Módulo 00 · Introducción al Vastu Shastra", items: [ "Qué es el Vastu Shastra: historia y filosofía desde la Antigua India.", "Principios de la ciencia ancestral de la construcción y el “Vastu Purusha”.", "Los 5 elementos: Tierra, Agua, Fuego, Aire y Éter.", "Lectura del mapa energético y 10 factores de desequilibrio en un espacio.", ], }, { id: "mod-1", title: "Módulo 1 · Desbalances Energéticos Interior / Exterior", items: [ "Desequilibrios energéticos en espacios EXTERIORES según los 5 elementos.", "Desequilibrios energéticos en espacios INTERIORES según los 5 elementos.", ], }, { id: "mod-2", title: "Módulo 2 · Simbología & Yantras", items: [ "Energía, frecuencia y vibración: ciencia detrás de la geometría sagrada.", "Simbolismo de los Yantras y su uso en la energía del espacio.", ], }, { id: "mod-3", title: "Módulo 3 · Correcciones Vastu Exterior", items: [ "Estrategias para estrés ambiental y desequilibrios exteriores.", "Implementación de 10 correcciones Vastu en un caso real (Ejercicio 1).", ], }, { id: "mod-4", title: "Módulo 4 · Correcciones Vastu Interior", items: [ "Estrategias para estrés ambiental interior y mejoras en ambientes internos.", "Aplicación de 10 correcciones Vastu en un caso real (Ejercicio 2).", ], }, { id: "mod-5", title: "Módulo 5 · Vastu en Espacios No Residenciales", items: [ "Estrategias para espacios comerciales y energía del dinero.", "Armonización de un espacio laboral (caso práctico).", ], }, { id: "mod-6", title: "Módulo 6 · Vastu + Ayurveda", items: [ "Conexión entre Vastu y Ayurveda: impacto del entorno en la salud física.", "Equilibrio de los 5 elementos entre el cuerpo y el espacio.", ], }, { id: "mod-7", title: "Módulo 7 · Vastu + Jyotish + Energías Planetarias", items: [ "Cómo las energías planetarias afectan el entorno.", "Influencia astrológica en el diseño de espacios.", ], }, { id: "mod-8", title: "Módulo 8 · Geopatías", items: [ "Estudio del estrés ambiental con radiestesia y geobiología.", "Identificación de radiación y técnicas correctivas (Ejercicio 3).", ], }, { id: "mod-9", title: "Módulo 9 · Estudio y Diagnóstico", items: [ "Evaluación de espacios y análisis de desequilibrios energéticos.", "Ejercicios prácticos de diagnóstico en situaciones reales.", ], }, { id: "mod-10", title: "Módulo 10 · Diagrama de Correcciones", items: [ "Creación de diagramas para equilibrar y armonizar espacios.", "Aplicación en casos de estudio reales.", ], }, { id: "mod-11", title: "Módulo 11 · Método de Armonización Paso a Paso", items: [ "Método de consultoría estructurado (online y en vivo).", "Evaluación final: proyecto de armonización paso a paso.", ], }, { id: "mod-12", title: "Módulo 12 · Altar & Vastu Arquitectura", items: [ "Vastu en diseño y arquitectura.", "Altares en tradición védica y manifestación de intenciones.", ], }, ];
 ---
 
 <Layout>
@@ -8,27 +10,332 @@ import Layout from "../layouts/Layout.astro";
 			<h5
 				class="text-white text-balance font-semibold text-center text-[16px] md:text-[18px] mb-4 md:mb-4"
 			>
-				Ya estas un paso más cerca de poder Equilibrar y Armonizar cualquier tipo de Espacio.
+				Ya estas un paso más cerca de poder Equilibrar y Armonizar
+				cualquier tipo de Espacio.
 			</h5>
 			<h1
 				class="text-white font-bold text-[22px] leading-[120%] md:text-[34px] text-center max-w-[1200px] mx-auto mb-8 md:text-balance"
 			>
-				¡Bienvenida y gracias por agendar! Es fundamental que te tomes dos minutos para ver este video en el que te explico de que se trata la llamada
+				¡Bienvenido/a y gracias por agendar! Es fundamental que te tomes
+				dos minutos para ver este video en el que te explico de que se
+				trata la llamada
 			</h1>
-			<iframe class="mx-auto w-full aspect-video mb-4" id="panda-b4e5924a-5c3f-4b0e-88d4-a01d20290f86" src="https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=b4e5924a-5c3f-4b0e-88d4-a01d20290f86" style="border:none;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen=true fetchpriority="high"></iframe>
+			<iframe
+				class="mx-auto w-full aspect-video mb-4"
+				id="panda-b4e5924a-5c3f-4b0e-88d4-a01d20290f86"
+				src="https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=b4e5924a-5c3f-4b0e-88d4-a01d20290f86"
+				style="border:none;"
+				allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+				allowfullscreen="true"
+				fetchpriority="high"></iframe>
 			<p
 				class="text-center max-w-[800px] text-white mx-auto md:text-[20px]"
 			>
-				Una vez que lo hayas visto necesito que confirmes la llamada para asegurar tu lugar.
-				Hace clic en el botón de abajo y confirma tu asistencia.
+				Una vez que lo hayas visto necesito que confirmes la llamada
+				para asegurar tu lugar. Hace clic en el botón de abajo y
+				confirma tu asistencia.
 			</p>
-			<a class="py-3 bg-green-500 block text-center mx-auto md:w-fit mt-8 px-8 text-white font-bold" target="_blank" href="https://wa.me/+5491125440011?text=Hola%20Ivan!%2C%20quiero%20confirmar%20mi%20consulta">Confirmar mi asistencia</a>
+			<a
+				class="py-3 bg-green-500 block text-center mx-auto md:w-fit mt-8 px-8 text-white font-bold"
+				target="_blank"
+				href="https://wa.me/+5491125440011?text=Hola%20Ivan!%2C%20quiero%20confirmar%20mi%20consulta"
+				>Confirmar mi asistencia</a
+			>
 			<p class="text-center my-8 text-white/80 max-w-[500px] mx-auto">
 				(En caso de no poder asistir por favor avisar con anticipación
 				para no quitarle lugar a otra persona).
 			</p>
-			<iframe class="w-full max-w-[500px] mx-auto aspect-video mb-4" src="https://www.youtube.com/embed/8yi6D2Nkx04?si=AC5Ye1a63UoFQ1pK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-			<iframe class="w-full max-w-[500px] mx-auto aspect-video mb-4" src="https://www.youtube.com/embed/W1L5Yg8L0Bg?si=47uwsH6uCPeHyoD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+			<section
+				id="programa-formacion-vastu"
+				class="w-full text-white pt-16 md:pt-20"
+			>
+				<div
+					class="mx-auto max-w-6xl grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start"
+				>
+					{/* COLUMNA IZQUIERDA: RESUMEN DEL PROGRAMA */}
+					<div class="space-y-6">
+						<p
+							class="text-md font-semibold tracking-[0.2em] text-[#F3B23A] uppercase"
+						>
+							CONTENIDO
+						</p>
+						<h2
+							class="text-2xl md:text-3xl font-semibold leading-tight text-balance"
+						>
+							Programa de Formación para Consultores de Vastu
+							Shastra
+						</h2>
+						<p
+							class="text-white/80 text-md md:text-base leading-relaxed"
+						>
+							Aprendé a leer y armonizar espacios según los
+							principios del Vastu Shastra, integrando los 5
+							elementos, las orientaciones y las energías del
+							entorno para crear ambientes que potencien el
+							bienestar de las personas.
+						</p>
+
+						{/* Objetivo general */}
+						<div
+							class="rounded-2xl border border-white/10 bg-white/5 p-5 space-y-3"
+						>
+							<h3
+								class="text-base md:text-lg font-semibold text-[#F3B23A]"
+							>
+								Objetivo General
+							</h3>
+							<p class="text-md md:text-base text-white/90">
+								Capacitarte para convertirte en consultor/a
+								certificado/a en Vastu Shastra, capaz de
+								realizar consultorías presenciales y a
+								distancia, aplicando un método práctico para
+								equilibrar y armonizar distintos tipos de
+								espacios.
+							</p>
+						</div>
+
+						{/* Formato de la formación */}
+						<div class="grid gap-4 md:grid-cols-2">
+							<div
+								class="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-2"
+							>
+								<h4
+									class="text-sm md:text-md font-semibold text-white uppercase tracking-wide"
+								>
+									Formato & Modalidad
+								</h4>
+								<ul
+									class="text-sm md:text-md space-y-1.5 text-white/80"
+								>
+									<li>
+										• 12 módulos grabados · 28 clases aprox.
+										de 30 minutos.
+									</li>
+									<li>
+										• Clases semanales de consultas en vivo
+										por Zoom.
+									</li>
+									<li>
+										• Clases grabadas en plataforma Skool.
+									</li>
+									<li>
+										• Contenido teórico y práctico con
+										ejercicios reales.
+									</li>
+								</ul>
+							</div>
+							<div
+								class="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-2"
+							>
+								<h4
+									class="text-sm md:text-md font-semibold text-white uppercase tracking-wide"
+								>
+									Comunidad & Recursos
+								</h4>
+								<ul
+									class="text-sm md:text-md space-y-1.5 text-white/80"
+								>
+									<li>
+										• Grupo de WhatsApp para soporte y
+										consultas.
+									</li>
+									<li>
+										• Carpeta con todo el material gráfico.
+									</li>
+									<li>
+										• Espacios online para corregir
+										prácticas.
+									</li>
+									<li>
+										• Certificado final y acceso a comunidad
+										de consultores.
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						{/* Días, horarios y requisitos */}
+						<div class="grid gap-4 md:grid-cols-2">
+							<div
+								class="rounded-2xl bg-white/5 border border-white/10 p-4 space-y-2"
+							>
+								<h4
+									class="text-sm md:text-md font-semibold uppercase tracking-wide text-white"
+								>
+									Días & Horarios de las Clases en Vivo
+								</h4>
+								<ul
+									class="text-sm md:text-md space-y-1.5 text-white/80"
+								>
+									<li>• Martes cada 15 días.</li>
+									<li>
+										• Horarios: 15:30 y 19:30 hs (hora
+										Argentina).
+									</li>
+									<li>• Duración aproximada: 1 hora.</li>
+									<li>
+										• Podés avanzar a tu propio ritmo con
+										las grabaciones.
+									</li>
+								</ul>
+							</div>
+
+							<div
+								class="rounded-2xl bg-white/5 border border-white/10 p-4 space-y-2"
+							>
+								<h4
+									class="text-sm md:text-md font-semibold uppercase tracking-wide text-white"
+								>
+									Requisitos para Participar
+								</h4>
+								<ul
+									class="text-sm md:text-md space-y-1.5 text-white/80"
+								>
+									<li>
+										• No se requieren estudios previos en
+										diseño o arquitectura.
+									</li>
+									<li>
+										• Conocimientos básicos de PowerPoint y
+										Word.
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					{/* COLUMNA DERECHA: MÓDULOS + INVERSIÓN */}
+					<div class="space-y-6">
+						{/* Acordeón de módulos */}
+						<div
+							class="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-5"
+						>
+							<h3
+								class="text-md md:text-base font-semibold mb-3 text-[#F3B23A]"
+							>
+								Explorá el contenido módulo por módulo
+							</h3>
+							<div
+								class="space-y-2.5 max-h-[420px] overflow-y-auto pr-1"
+							>
+								{
+									modules.map((mod) => (
+										<details
+											class="group rounded-xl border border-white/10 bg-black/30 px-4 py-3 transition hover:border-[#F3B23A]/60"
+											data-module={mod.id}
+										>
+											<summary class="flex cursor-pointer items-center justify-between gap-2 text-md md:text-base font-medium text-white list-none">
+												<span>{mod.title}</span>
+												<span class="shrink-0 text-sm text-[#F3B23A] group-open:rotate-90 transition-transform">
+													❯
+												</span>
+											</summary>
+											<ul class="mt-2 pl-1 space-y-1.5 text-sm md:text-md text-white/80">
+												{mod.items.map((item) => (
+													<li>{item}</li>
+												))}
+											</ul>
+										</details>
+									))
+								}
+							</div>
+						</div>
+
+						{/* Inversión y formas de pago */}
+						<div
+							class="rounded-2xl border border-white/10 bg-white/5 p-5 space-y-4"
+						>
+							<h3
+								class="text-md md:text-base font-semibold text-white"
+							>
+								Inversión & Formas de Pago
+							</h3>
+							<div class="grid gap-4 md:grid-cols-2">
+								<div
+									class="rounded-xl border border-[#F3B23A]/60 bg-black/40 p-4 space-y-2"
+								>
+									<p
+										class="text-sm font-semibold tracking-wide uppercase text-[#F3B23A]"
+									>
+										Valor de la formación
+									</p>
+									<p
+										class="text-2xl font-bold text-[#F3B23A] leading-tight"
+									>
+										750 USD
+									</p>
+									<p class="text-sm text-white/85">
+										• 1 pago de 750 USD<br />
+										• 3 pagos de 250 USD (total 750 USD)
+									</p>
+								</div>
+
+								<div
+									class="space-y-3 text-sm md:text-md text-white/80"
+								>
+									<div>
+										<p
+											class="font-semibold text-white text-sm uppercase tracking-wide mb-1"
+										>
+											Pagos en USD
+										</p>
+										<p>
+											PayPal · Tarjeta de crédito/débito
+											internacionales · Zelle ·
+											Transferencia bancaria.
+										</p>
+									</div>
+									<div>
+										<p
+											class="font-semibold text-white text-sm uppercase tracking-wide mb-1"
+										>
+											Pagos en Pesos Argentinos
+										</p>
+										<p>
+											Se toma el valor del dólar blue al
+											día del pago. Podés abonar por
+											Mercado Pago, transferencia bancaria
+											o en efectivo.
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<a
+				class="py-3 bg-green-500 block text-center mx-auto md:w-fit mt-8 px-8 text-white font-bold"
+				target="_blank"
+				href="https://wa.me/+5491125440011?text=Hola%20Ivan!%2C%20quiero%20confirmar%20mi%20consulta"
+				>Confirmar mi asistencia</a
+			>
+			<iframe
+				class="w-full max-w-[500px] mx-auto aspect-video mb-4 mt-12"
+				src="https://www.youtube.com/embed/8yi6D2Nkx04?si=AC5Ye1a63UoFQ1pK"
+				title="YouTube video player"
+				frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				referrerpolicy="strict-origin-when-cross-origin"
+				allowfullscreen></iframe>
+			<iframe
+				class="w-full max-w-[500px] mx-auto aspect-video mb-4"
+				src="https://www.youtube.com/embed/W1L5Yg8L0Bg?si=47uwsH6uCPeHyoD"
+				title="YouTube video player"
+				frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				referrerpolicy="strict-origin-when-cross-origin"
+				allowfullscreen></iframe>
+
+			<a
+				class="py-3 bg-green-500 block text-center mx-auto md:w-fit mt-8 px-8 text-white font-bold"
+				target="_blank"
+				href="https://wa.me/+5491125440011?text=Hola%20Ivan!%2C%20quiero%20confirmar%20mi%20consulta"
+				>Confirmar mi asistencia</a
+			>
+
 			<img
 				class="mx-auto w-[250px] mix-blend-screen mt-[80px]"
 				src="/images/vastu-shastra.webp"
@@ -42,15 +349,14 @@ import Layout from "../layouts/Layout.astro";
 		</div>
 	</section>
 	<script is:inline>
-		window.addEventListener('load', () => {
+		window.addEventListener("load", () => {
 			let params = new URLSearchParams(document.location.search);
 			let eventId = params.get("event_id");
-    		console.log("Event ID: ", eventId)
+			console.log("Event ID: ", eventId);
 			if (eventId) {
-				console.log("trakeado con pixel")
-				fbq('track', 'Schedule', {}, { eventID: eventId });
-
+				console.log("trakeado con pixel");
+				fbq("track", "Schedule", {}, { eventID: eventId });
 			}
-		})
+		});
 	</script>
 </Layout>
