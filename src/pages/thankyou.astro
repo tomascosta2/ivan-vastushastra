@@ -349,14 +349,14 @@ const modules = [ { id: "mod-0", title: "Módulo 00 · Introducción al Vastu Sh
 		</div>
 	</section>
 	<script is:inline>
-		window.addEventListener("load", () => {
-			let params = new URLSearchParams(document.location.search);
-			let eventId = params.get("event_id");
-			console.log("Event ID: ", eventId);
-			if (eventId) {
-				console.log("trakeado con pixel");
-				fbq("track", "Schedule", {}, { eventID: eventId });
-			}
-		});
+		// window.addEventListener("load", () => {
+		// 	let params = new URLSearchParams(document.location.search);
+		// 	let eventId = params.get("event_id");
+		// 	console.log("Event ID: ", eventId);
+		// 	if (eventId) {
+		// 		console.log("trakeado con pixel");
+		// 		fbq("track", "Schedule", {}, { eventID: eventId });
+		// 	}
+		// });
 	</script>
 </Layout>
