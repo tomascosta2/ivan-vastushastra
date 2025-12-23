@@ -1,4 +1,5 @@
 ---
+import Beneficts from "./Beneficts.astro";
 import Button from "./Button.astro";
 import VideoEmbed from "./VideoEmbed.astro";
 
@@ -29,7 +30,7 @@ Astro.cookies.set(COOKIE, variant, {
 });
 ---
 
-<section class="pt-[32px] pb-16 md:py-[60px] px-4 relative overflow-hidden" data-ab-title={variant}>
+<section class="pt-[32px] pb-16 md:pt-[60px] md:pb-[80px] px-4 relative overflow-hidden" data-ab-title={variant}>
   <div class="md:size-[880px] rounded-full bg-[#F3B23A] absolute blur-[90px] md:blur-[300px] md:-left-[440px] md:-top-[440px]"></div>
 
   <div class="max-w-[890px] mx-auto relative">
@@ -58,5 +59,8 @@ Astro.cookies.set(COOKIE, variant, {
     <p class="text-center italic text-white/80 text-[14px] relative">
       ¡Resolve tus dudas y aprovecha el precio de este mes!
     </p>
+
+    {variant === 'B' && <Beneficts />}
+    
   </div>
 </section>

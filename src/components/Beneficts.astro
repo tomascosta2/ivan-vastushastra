@@ -1,0 +1,70 @@
+---
+const benefits = [
+  {
+    title: "Comprensión estructural del Vastu Shastra",
+    modules: "Módulos 0 y 1",
+    desc:
+      "Entendés el Vastu como un sistema lógico: principios, elementos, mapa energético y detección de desbalances interiores y exteriores aplicables a cualquier espacio.",
+  },
+  {
+    title: "Lectura energética con fundamentos claros",
+    modules: "Módulos 2 y 8",
+    desc:
+      "Aprendés a interpretar simbología, geometría, frecuencias y geopatías desde un enfoque ordenado, evitando interpretaciones vagas o arbitrarias.",
+  },
+  {
+    title: "Correcciones prácticas en espacios reales",
+    modules: "Módulos 3 y 4",
+    desc:
+      "Incorporás estrategias concretas de corrección Vastu tanto en exterior como en interior, con ejercicios aplicados a casos reales.",
+  },
+  {
+    title: "Aplicación profesional en proyectos comerciales",
+    modules: "Módulo 5",
+    desc:
+      "Sabés cómo aplicar Vastu en locales, oficinas y espacios laborales, entendiendo la relación entre diseño, uso del espacio y energía del dinero.",
+  },
+  {
+    title: "Integración del espacio con la salud y el entorno",
+    modules: "Módulos 6 y 7",
+    desc:
+      "Comprendés cómo el espacio impacta en el bienestar físico y energético, integrando Vastu con Ayurveda y energías planetarias de forma coherente.",
+  },
+  {
+    title: "Método de diagnóstico y consultoría paso a paso",
+    modules: "Módulos 9 a 12",
+    desc:
+      "Aprendés un proceso completo de diagnóstico, diagramación y armonización que podés aplicar en consultas profesionales reales.",
+  },
+];
+---
+
+<section class="relative pt-20 px-4 overflow-hidden">
+
+  <div class="max-w-[1100px] mx-auto relative">
+    <span class="mx-auto mb-4 block w-fit text-[14px] bg-[#F3B23A]/20 border border-[#F3B23A]/40 py-2 px-6 rounded-full text-center">
+      Beneficios
+    </span>
+
+    <h2 class="text-center text-[24px] md:text-[36px] font-bold leading-tight mb-8">
+      Qué te llevás al completar la
+      <span class="text-[#F3B23A]"> Formación en Vastu Shastra</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {benefits.map((b) => (
+        <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+          <span class="block text-[14px] mb-2 text-[#F3B23A]/80 font-medium">
+            {b.modules}
+          </span>
+          <h3 class="font-semibold text-[17px] mb-2">
+            {b.title}
+          </h3>
+          <p class="text-white/80 text-[16px] leading-relaxed">
+            {b.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
