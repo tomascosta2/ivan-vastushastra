@@ -53,14 +53,19 @@ Astro.cookies.set(COOKIE, variant, {
 
     <p class="max-w-[700px] mx-auto text-[14px] md:text-[16px] text-center mt-4">
       Sin renunciar a la técnica ni a tus formas, descubrí cómo aplicar los principios del Vastu para crear espacios con coherencia energética y propósito.
-    </p>
+    </p>   
 
-    <Button />
+    {variant === 'A' && (
+      <><Button texto="Agendar mi consulta »" /></>
+    )}
+
+    {variant === 'B' && (
+      <><Button texto="Quiero saber si este camino es para mí »" /></>
+    )}
+
     <p class="text-center italic text-white/80 text-[14px] relative">
       ¡Resolve tus dudas y aprovecha el precio de este mes!
     </p>
-
-    {variant === 'B' && <Beneficts />}
     
   </div>
 </section>
