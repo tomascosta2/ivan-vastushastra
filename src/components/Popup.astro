@@ -401,6 +401,13 @@ const {
 		const postUrl = form.dataset.postUrl || "/api/qualify";
 		const data = Object.fromEntries(new FormData(form).entries());
 
+		// Quiero enviar tambien el parametro ad que viene en la url
+		const urlParams = new URLSearchParams(window.location.search);
+		const adParam = urlParams.get("ad");
+		if (adParam) {
+			data.ad = adParam;
+		}
+
 		// Validación mínima de contacto (desde ocultos)
 		const name = ($("#qf-name-hidden")?.value || "").trim();
 		const tel = ($("#qf-telefono-hidden")?.value || "").trim();
