@@ -40,9 +40,11 @@ const {
 			<input type="hidden" name="motivo" />
 			<input type="hidden" name="ocupacion" />
 			<input type="hidden" name="compromiso" />
+			<input type="hidden" name="inversion" />
 
 			<!-- Contacto ocultos permanentes (se llenan desde el paso 1 visible) -->
 			<input type="hidden" name="name" id="qf-name-hidden" />
+			<input type="hidden" name="country_code" id="qf-country-code-hidden" />
 			<input type="hidden" name="telefono" id="qf-telefono-hidden" />
 			<input type="hidden" name="email" id="qf-email-hidden" />
 
@@ -191,6 +193,22 @@ const {
 				},
 			],
 		},
+		{
+			id: "inversion",
+			title:
+				"El valor total de la formación Vastu es de usd 750, con la opción de hacer el pago en cuotas sin interes, ¿Contas con la posibilidad de invertir en ella?",
+			type: "single",
+			options: [
+				{
+					value: "si-me-interesa",
+					label: "Si, me interesa y me quiero formar",
+				},
+				{
+					value: "no-ahora",
+					label: "Prefiero no invertir ahora",
+				},
+			],
+		},
 	];
 
 	function openModal() {
@@ -236,6 +254,31 @@ const {
 	function contactHTML(step) {
 		const inputs = step.fields
 			.map((f) => {
+				if (f.name === "telefono") {
+					return `
+        <label class="block">
+          <span class="text-sm text-white/80">${f.label}</span>
+          <div class="mt-2 grid grid-cols-[120px_1fr] gap-3">
+            <select
+              id="qf-country-code-visible"
+              class="w-full px-3 py-3 rounded-lg bg-white/5 border border-white/15 text-white focus:outline-none focus:ring-2 focus:ring-white/20"
+            >
+              <option value="+54">+54 Argentina</option>
+              <option value="+34">+34 España</option>
+              <option value="+1">+1 USA</option>
+            </select>
+            <input
+              type="tel"
+              id="qf-telefono-visible"
+              autocomplete="tel"
+              class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/15 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/20"
+              placeholder="Número"
+              ${f.required ? "required" : ""}
+            />
+          </div>
+        </label>
+      `;
+				}
 				const attrs = [
 					`type="${f.type}"`,
 					`id="qf-${f.name}-visible"`, // sin name (evita duplicados), sincroniza a los ocultos
@@ -259,9 +302,11 @@ const {
 
 	function syncContactHidden() {
 		const nameV = ($("#qf-name-visible")?.value || "").trim();
+		const ccV = ($("#qf-country-code-visible")?.value || "+54").trim();
 		const telV = ($("#qf-telefono-visible")?.value || "").trim();
 		const mailV = ($("#qf-email-visible")?.value || "").trim();
 		$("#qf-name-hidden").value = nameV;
+		$("#qf-country-code-hidden").value = ccV;
 		$("#qf-telefono-hidden").value = telV;
 		$("#qf-email-hidden").value = mailV;
 	}
@@ -321,6 +366,12 @@ const {
 						updateControls();
 					});
 			});
+			const ccEl = $("#qf-country-code-visible", stepsHost);
+			if (ccEl)
+				ccEl.addEventListener("change", () => {
+					syncContactHidden();
+					updateControls();
+				});
 			// Por si el navegador autocompleta
 			setTimeout(() => {
 				syncContactHidden();
