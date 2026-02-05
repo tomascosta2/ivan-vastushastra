@@ -78,7 +78,9 @@
 			const comp = String(answers.compromiso || "");
 			const isTarget = ocup === "arquitecta" || ocup === "disenadora";
 			const hasCommitment = comp !== "explorando";
-			return isTarget && hasCommitment;
+			const pres = String(answers.presupuesto || "");
+			const canPay = pres !== "no-ahora";
+			return isTarget && canPay;
 		} catch {
 			return false;
 		}
