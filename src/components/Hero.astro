@@ -5,13 +5,13 @@ import VideoEmbed from "./VideoEmbed.astro";
 
 // === A/B CONFIG ===
 const COOKIE = "ab_vastu_title";
-const titles: Record<'A'|'B', string> = { 
-	A: `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
+const titles: Record<"A" | "B", string> = {
+  A: `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
     El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…`,
   B: `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
     El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…`,
 };
-type Variant = 'A' | 'B';
+type Variant = "A" | "B";
 
 // 1) Permitir override por query (?ab=A|B)
 const urlAb = Astro.url?.searchParams.get("ab");
@@ -19,7 +19,9 @@ const qpVariant = urlAb === "A" || urlAb === "B" ? urlAb : null;
 
 // 2) Leer cookie existente
 const cookieVariant = Astro.cookies.get(COOKIE)?.value;
-let variant = (qpVariant ?? cookieVariant ?? (Math.random() < 0.5 ? 'A' : 'B')) as Variant;
+let variant = (qpVariant ??
+  cookieVariant ??
+  (Math.random() < 0.5 ? "A" : "B")) as Variant;
 
 // 3) Persistir cookie (90 días). httpOnly en false para que puedas leerla desde el cliente si querés.
 Astro.cookies.set(COOKIE, variant, {
@@ -30,11 +32,20 @@ Astro.cookies.set(COOKIE, variant, {
 });
 ---
 
-<section class="pt-[32px] pb-16 md:pt-[60px] md:pb-[80px] px-4 relative overflow-hidden" data-ab-title={variant}>
-  <div class="md:size-[880px] rounded-full bg-[#F3B23A] absolute blur-[90px] md:blur-[300px] md:-left-[440px] md:-top-[440px]"></div>
+<section
+  class="pt-[32px] pb-16 md:pt-[60px] md:pb-[80px] px-4 relative overflow-hidden"
+  data-ab-title={variant}
+>
+  <div
+    class="md:size-[880px] rounded-full bg-[#F3B23A] absolute blur-[90px] md:blur-[300px] md:-left-[440px] md:-top-[440px]"
+  >
+  </div>
 
   <div class="max-w-[890px] mx-auto relative">
-    <span class="text-center mx-auto text-[14px] block w-fit bg-[#F3B23A]/20 border border-[#F3B23A]/40 py-2 px-6 rounded-full">¿Querés crear espacios con armonía?</span>
+    <span
+      class="text-center mx-auto text-[14px] block w-fit bg-[#F3B23A]/20 border border-[#F3B23A]/40 py-2 px-6 rounded-full"
+      >¿Querés crear espacios con armonía?</span
+    >
 
     <!-- Título con A/B -->
     <h1
@@ -42,8 +53,12 @@ Astro.cookies.set(COOKIE, variant, {
       set:html={titles[variant]}
     />
 
-    <div class="max-w-[700px] mx-auto z-50 border-4 border-[#F3B23A] rounded-lg overflow-hidden relative">
-      <p class="flex gap-2 items-center justify-center text-center p-2 md:p-4 md:text-[20px] font-bold bg-[#F3B23A]">
+    <div
+      class="max-w-[700px] mx-auto z-50 border-4 border-[#F3B23A] rounded-lg overflow-hidden relative"
+    >
+      <p
+        class="flex gap-2 items-center justify-center text-center p-2 md:p-4 md:text-[20px] font-bold bg-[#F3B23A]"
+      >
         Mira el video completo y agenda tu consulta
       </p>
       <div class="bg-[#F3B23A] w-full aspect-video">
@@ -51,15 +66,51 @@ Astro.cookies.set(COOKIE, variant, {
       </div>
     </div>
 
-    <p class="max-w-[700px] mx-auto text-[14px] md:text-[16px] text-center mt-4">
-      Sin renunciar a la técnica ni a tus formas, descubrí cómo aplicar los principios del Vastu para crear espacios con coherencia energética y propósito.
-    </p>   
+    <p
+      class="max-w-[700px] mx-auto text-[14px] md:text-[16px] text-center mt-4"
+    >
+      Sin renunciar a la técnica ni a tus formas, descubrí cómo aplicar los
+      principios del Vastu para crear espacios con coherencia energética y
+      propósito.
+    </p>
 
     <Button texto="Quiero aplicar Vastu en mis proyectos »" />
 
     <p class="text-center italic text-white/80 text-[14px] relative">
       ¡Resolve tus dudas y aprovecha el precio de este mes!
     </p>
-    
+
+    {variant === "A" ? (
+      <ul class="mt-8 max-w-[900px] mx-auto text-[14px] md:text-[16px] text-white/90 space-y-2 md:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-x-8 md:gap-y-3">
+        <li class="flex items-start gap-2 md:items-center">
+          <span class="mt-1 md:mt-0 inline-flex size-4 shrink-0 items-center justify-center rounded-full bg-[#F3B23A] text-[#111]">
+            <svg viewBox="0 0 16 16" class="size-3" aria-hidden="true">
+              <path d="M6.2 11.4 2.8 8l1.1-1.1 2.3 2.3 5-5L12.3 5z" fill="currentColor"></path>
+            </svg>
+          </span>
+          <span>
+            Aprendé a aplicar Vastu en proyectos reales desde el primer módulo.
+          </span>
+        </li>
+        <li class="flex items-start gap-2 md:items-center">
+          <span class="mt-1 md:mt-0 inline-flex size-4 shrink-0 items-center justify-center rounded-full bg-[#F3B23A] text-[#111]">
+            <svg viewBox="0 0 16 16" class="size-3" aria-hidden="true">
+              <path d="M6.2 11.4 2.8 8l1.1-1.1 2.3 2.3 5-5L12.3 5z" fill="currentColor"></path>
+            </svg>
+          </span>
+          <span>Metodología clara, con ejemplos y guía paso a paso.</span>
+        </li>
+        <li class="flex items-start gap-2 md:items-center">
+          <span class="mt-1 md:mt-0 inline-flex size-4 shrink-0 items-center justify-center rounded-full bg-[#F3B23A] text-[#111]">
+            <svg viewBox="0 0 16 16" class="size-3" aria-hidden="true">
+              <path d="M6.2 11.4 2.8 8l1.1-1.1 2.3 2.3 5-5L12.3 5z" fill="currentColor"></path>
+            </svg>
+          </span>
+          <span>
+            Clases en vivo todas las semanas.
+          </span>
+        </li>
+      </ul>
+    ) : null}
   </div>
 </section>
