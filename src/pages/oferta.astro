@@ -116,7 +116,13 @@ const includes = [
           aplicarlos sería totalmente desacertado.
         </p>
         <footer class="testimonial-author">
-          <span class="author-avatar" aria-hidden="true">FC</span>
+          <img
+            class="author-avatar"
+            src="/images/FERNANDA-CHEDID.jpeg"
+            alt="Fernanda Chedid"
+            loading="lazy"
+            decoding="async"
+          />
           <div>
             <cite class="author-name">Fernanda Chedid</cite>
             <span class="author-role">Alumna de la formación</span>
@@ -431,13 +437,8 @@ const includes = [
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold) 0%, #8b5e0a 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--dark);
+    object-fit: cover;
+    border: 1px solid rgba(232, 160, 32, 0.35);
   }
 
   .author-name {
