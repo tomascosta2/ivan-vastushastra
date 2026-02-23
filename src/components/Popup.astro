@@ -460,9 +460,11 @@ const {
 	function computeQualified(data) {
 		const ocup = String(data.ocupacion || "");
 		const comp = String(data.compromiso || "");
+		const inv = String(data.inversion || "");
 		const isTarget = ocup === "arquitecta";
 		const hasCommitment = comp !== "base-practica";
-		return hasCommitment && isTarget;
+		const canInvest = inv === "si-me-interesa";
+		return hasCommitment && isTarget && canInvest;
 	}
 
 	form.addEventListener("submit", async (e) => {
@@ -525,12 +527,17 @@ const {
 			});
 			if (!res.ok) throw new Error("Error al enviar");
 
-			msg.textContent = "¡Listo! Te llevamos a agendar.";
+			msg.textContent =
+				data.inversion === "no-ahora"
+					? "Perfecto! Tenemos algo para vos."
+					: "¡Listo! Te llevamos a agendar.";
 			msg.className = "text-sm mt-4 text-green-400";
 			msg.classList.remove("hidden");
 
 			setTimeout(() => {
-				window.location = "/calendar";
+				window.location = qualified
+					? "/calendar"
+					: "/oferta";
 			}, 500);
 		} catch {
 			msg.textContent =

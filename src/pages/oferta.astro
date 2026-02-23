@@ -1,0 +1,578 @@
+---
+// src/pages/oferta.astro
+// Sub-landing de downsell — Low Ticket USD 49
+
+interface Props {
+  ctaUrl?: string;
+  whatsappUrl?: string;
+}
+
+const {
+  ctaUrl = "https://pay.hotmart.com/M104321896G?off=ruis2d2o&hotfeature=51",
+  whatsappUrl = "https://wa.me/TUNUMERO",
+} = Astro.props;
+
+const includes = [
+  {
+    title: "Módulo de fundamentos del Vastu Shastra",
+    desc: "Los principios base para entender la energía en los espacios y empezar a aplicarlos.",
+  },
+  {
+    title: "Guía práctica de los 5 elementos",
+    desc: "Cómo se relacionan Tierra, Agua, Fuego, Aire y Éter en cualquier ambiente.",
+  },
+  {
+    title: "Checklist de diagnóstico energético",
+    desc: "Una herramienta para evaluar cualquier espacio con los ojos del Vastu desde el día uno.",
+  },
+  {
+    title: "Acceso permanente al material",
+    desc: "Sin vencimiento. Lo revisás cuando quieras, cuantas veces quieras.",
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vastu Shastra — Empezá por USD 49</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <span class="badge">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Oferta especial de entrada
+      </span>
+
+      <h1 class="headline">
+        El Vastu empieza con<br /><em>un solo paso.</em>
+      </h1>
+
+      <p class="subheadline">
+        Si hoy la formación completa no es tu momento, está bien. Tenés una
+        forma de empezar a incorporar esta ciencia ancestral — sin compromiso,
+        sin riesgo — y ver por vos mismo cómo transforma los espacios.
+      </p>
+
+      <div class="divider" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-text">Qué incluye el acceso inicial</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <p class="includes-title">Vas a recibir</p>
+
+      <ul class="includes-list">
+        {
+          includes.map((item) => (
+            <li>
+              <span class="check" aria-hidden="true">
+                <svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="10"
+                  height="10"
+                >
+                  <path
+                    d="M2 6L5 9L10 3"
+                    stroke="#E8A020"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="item-text">
+                <strong>{item.title}</strong>
+                <span>{item.desc}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="objection">
+        <strong>¿Por qué empezar por aquí y no esperar?</strong><br />
+        Porque la mayoría de las personas que "esperan el momento ideal" nunca
+        empiezan. Con USD 49 podés confirmar por experiencia propia que esta
+        ciencia funciona — y si después querés la formación completa, ese monto
+        se descuenta del precio final.
+      </div>
+
+      <blockquote class="testimonial">
+        <p class="testimonial-quote">
+          Comencé con curiosidad y lo terminé convencida de que hay elementos a
+          nuestro alcance de una simplicidad y practicidad tan grandes que no
+          aplicarlos sería totalmente desacertado.
+        </p>
+        <footer class="testimonial-author">
+          <span class="author-avatar" aria-hidden="true">FC</span>
+          <div>
+            <cite class="author-name">Fernanda Chedid</cite>
+            <span class="author-role">Alumna de la formación</span>
+          </div>
+        </footer>
+      </blockquote>
+
+      <div class="cta-block">
+        <div class="price-row" aria-label="Precio: USD 49, antes USD 97">
+          <span class="price-currency">USD</span>
+          <span class="price-main">49</span>
+          <span class="price-was" aria-label="Antes USD 97">USD 97</span>
+        </div>
+        <p class="price-note">
+          Pago único · Acceso permanente · Procesado por Hotmart
+        </p>
+
+        <a href={ctaUrl} class="cta-btn" rel="noopener noreferrer">
+          Empezar ahora por USD 49 →
+        </a>
+
+        <p class="cta-sub">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect
+              x="3"
+              y="11"
+              width="18"
+              height="11"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.5"></rect>
+            <path
+              d="M7 11V7a5 5 0 0 1 10 0v4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"></path>
+          </svg>
+          Pago 100% seguro · Garantía de 7 días
+        </p>
+      </div>
+
+      <p class="secondary-link">
+        ¿Preferís hablar antes de decidir?
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+          Escribime por WhatsApp →
+        </a>
+      </p>
+
+    </div>
+  </body>
+</html>
+
+<style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --gold: #e8a020;
+    --gold-light: #f5bc4a;
+    --dark: #0f0d09;
+    --dark-card: #1a1710;
+    --dark-border: #2a2519;
+    --cream: #f2ebd9;
+    --muted: #8a7e68;
+    --text: #d9cfba;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--dark);
+    color: var(--text);
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(232, 160, 32, 0.08) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232, 160, 32, 0.1);
+    border: 1px solid rgba(232, 160, 32, 0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.8);
+    }
+  }
+
+  /* Headline */
+  .headline {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .subheadline {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 560px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+    animation: fadeUp 0.6s 0.25s ease both;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--dark-border);
+  }
+
+  .divider-text {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* Includes */
+  .includes-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .includes-list {
+    list-style: none;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.35s ease both;
+  }
+
+  .includes-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--dark-border);
+  }
+
+  .includes-list li:last-child {
+    border-bottom: none;
+  }
+
+  .check {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(232, 160, 32, 0.12);
+    border: 1px solid rgba(232, 160, 32, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .item-text strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+
+  .item-text span {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  /* Objection */
+  .objection {
+    background: rgba(232, 160, 32, 0.05);
+    border: 1px solid rgba(232, 160, 32, 0.15);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--text);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .objection strong {
+    color: var(--cream);
+  }
+
+  /* Testimonial */
+  .testimonial {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.45s ease both;
+  }
+
+  .testimonial-quote {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .testimonial-quote::before {
+    content: "\201C";
+    color: var(--gold);
+    margin-right: 2px;
+  }
+
+  .testimonial-quote::after {
+    content: "\201D";
+    color: var(--gold);
+    margin-left: 2px;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .author-avatar {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, #8b5e0a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .author-name {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--cream);
+    font-style: normal;
+  }
+
+  .author-role {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* CTA */
+  .cta-block {
+    text-align: center;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .price-main {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--cream);
+  }
+
+  .price-currency {
+    font-size: 1.3rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .price-was {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+
+  .price-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color: var(--dark);
+    text-decoration: none;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    padding: 18px 32px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      filter 0.2s ease;
+    box-shadow: 0 8px 32px rgba(232, 160, 32, 0.25);
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(232, 160, 32, 0.4);
+    filter: brightness(1.05);
+  }
+
+  .cta-btn:active {
+    transform: translateY(0);
+  }
+
+  .cta-sub {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* Secondary link */
+  .secondary-link {
+    display: block;
+    text-align: center;
+    margin-top: 28px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    animation: fadeUp 0.6s 0.55s ease both;
+  }
+
+  .secondary-link a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 160, 32, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  .secondary-link a:hover {
+    border-color: var(--gold);
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wrapper {
+      padding: 40px 20px 60px;
+    }
+    .headline {
+      font-size: 2rem;
+    }
+  }
+</style>
