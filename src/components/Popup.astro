@@ -458,13 +458,9 @@ const {
 
 	// Regla de calificación (editá a gusto)
 	function computeQualified(data) {
-		const ocup = String(data.ocupacion || "");
-		const comp = String(data.compromiso || "");
 		const inv = String(data.inversion || "");
-		const isTarget = ocup === "arquitecta";
-		const hasCommitment = comp !== "base-practica";
 		const canInvest = inv === "si-me-interesa";
-		return hasCommitment && isTarget && canInvest;
+		return canInvest;
 	}
 
 	form.addEventListener("submit", async (e) => {
