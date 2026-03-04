@@ -8,8 +8,8 @@ const COOKIE = "ab_vastu_title";
 const titles: Record<"A" | "B", string> = {
   A: `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
     El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…`,
-  B: `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
-    El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…`,
+  B: `No es lo mismo construir una Casa linda, que diseñar un Espacio para ser Feliz. 
+    El SECRETO Para Crear Espacios Armonicos Sin Tener que Empezar de Cero`,
 };
 type Variant = "A" | "B";
 
@@ -45,7 +45,7 @@ Astro.cookies.set(COOKIE, variant, {
     <span
       class="text-center mx-auto text-[14px] block w-fit bg-[#F3B23A]/20 border border-[#F3B23A]/40 py-2 px-6 rounded-full"
       >
-      {variant === "B" ? "¿Querés crear espacios con armonía?" : "¿Querés crear espacios que además de verse bien, se sientan bien?" }
+        ¿Querés crear espacios con armonía?
       </span
     >
 
