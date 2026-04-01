@@ -3,38 +3,12 @@ import Beneficts from "./Beneficts.astro";
 import Button from "./Button.astro";
 import VideoEmbed from "./VideoEmbed.astro";
 
-// === A/B CONFIG ===
-const COOKIE = "ab_vastu_title";
-const titles: Record<"A" | "B", string> = {
-  A: `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
-    El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…`,
-  B: `No es lo mismo construir una Casa linda, que diseñar un Espacio para ser Feliz. 
-    El SECRETO Para Crear Espacios Armonicos Sin Tener que Empezar de Cero`,
-};
-type Variant = "A" | "B";
-
-// 1) Permitir override por query (?ab=A|B)
-const urlAb = Astro.url?.searchParams.get("ab");
-const qpVariant = urlAb === "A" || urlAb === "B" ? urlAb : null;
-
-// 2) Leer cookie existente
-const cookieVariant = Astro.cookies.get(COOKIE)?.value;
-let variant = (qpVariant ??
-  cookieVariant ??
-  (Math.random() < 0.5 ? "A" : "B")) as Variant;
-
-// 3) Persistir cookie (90 días). httpOnly en false para que puedas leerla desde el cliente si querés.
-Astro.cookies.set(COOKIE, variant, {
-  path: "/",
-  maxAge: 60 * 60 * 24 * 90,
-  sameSite: "lax",
-  httpOnly: false,
-});
+const title = `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
+    El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…`;
 ---
 
 <section
   class="pt-[32px] pb-16 md:pt-[60px] md:pb-[80px] px-4 relative overflow-hidden"
-  data-ab-title={variant}
 >
   <div
     class="md:size-[880px] rounded-full bg-[#F3B23A] absolute blur-[90px] md:blur-[300px] md:-left-[440px] md:-top-[440px]"
@@ -52,7 +26,7 @@ Astro.cookies.set(COOKIE, variant, {
     <!-- Título con A/B -->
     <h1
       class="text-[20px] md:text-[32px] text-center font-bold my-4 leading-[120%] md:leading-[110%]"
-      set:html={titles[variant]}
+      set:html={title}
     />
 
     <div
