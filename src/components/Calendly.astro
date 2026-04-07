@@ -161,8 +161,23 @@
 					body: JSON.stringify({
 						email,
 					}),
+					keepalive: true,
 				},
 			).catch((err) => console.error("Tracking error:", err));
+
+			// Marcar agendo=Si en FFA (upsert por correo)
+			// keepalive: true → la request sobrevive al redirect a /thankyou
+			fetch("/api/analytics/lead", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					name,
+					email,
+					phone,
+					agendo: "Si",
+				}),
+				keepalive: true,
+			}).catch((err) => console.error("[FFA] error:", err));
 
 			// 👇 Enviar SOLO si está calificado
 			if (isQ) {
@@ -184,7 +199,7 @@
 			setTimeout(() => {
 				const ty_url = "/thankyou?event_id=" + eventId;
 				window.location = ty_url;
-			}, 600);
+			}, 4000);
 		}
 	});
 

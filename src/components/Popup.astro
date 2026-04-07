@@ -523,6 +523,25 @@ const {
 			});
 			if (!res.ok) throw new Error("Error al enviar");
 
+			// Enviar lead a Fit Funnels Analytics (no bloqueante)
+			// keepalive: true → la request sobrevive a la navegación posterior
+			fetch("/api/analytics/lead", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					name,
+					email,
+					phone: tel,
+					ad: data.ad ?? "",
+					variant: data.variant ?? "",
+					ocupacion: data.ocupacion ?? "",
+					compromiso: data.compromiso ?? "",
+					presupuesto: data.inversion ?? "",
+					objetivo: data.objetivo ?? "",
+				}),
+				keepalive: true,
+			}).catch((err) => console.error("[FFA] error:", err));
+
 			msg.textContent =
 				data.inversion === "no-ahora"
 					? "Perfecto! Tenemos algo para vos."
