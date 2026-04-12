@@ -476,6 +476,12 @@ const {
 			data.ad = adParam;
 		}
 
+		// Leer variante A/B desde cookie
+		const variantCookie = document.cookie.split("; ").find(c => c.startsWith("ab_vastu_title="))?.split("=")[1];
+		if (variantCookie) {
+			data.variant = variantCookie;
+		}
+
 		// Validación mínima de contacto (desde ocultos)
 		const name = ($("#qf-name-hidden")?.value || "").trim();
 		const tel = ($("#qf-telefono-hidden")?.value || "").trim();
