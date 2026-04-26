@@ -1,4 +1,32 @@
-<section class="py-8 px-4 bg-[#87806B]" id="calendly">
+---
+// === A/B CONFIG — título del Calendly ===
+const COOKIE = "ab_calendly_title";
+const titles: Record<"A" | "B", string> = {
+	A: "Agendá tu llamada, vamos a resolver tus dudas y consultas, y ver juntos si esta Formación es para vos.",
+	B: "Te voy a decir si Vastu Shastra realmente puede ayudarte o no (y cómo aplicarlo en tu caso)",
+};
+type Variant = "A" | "B";
+
+// 1) Override por query (?abCal=A|B)
+const urlAb = Astro.url?.searchParams.get("abCal");
+const qpVariant = urlAb === "A" || urlAb === "B" ? urlAb : null;
+
+// 2) Cookie existente
+const cookieVariant = Astro.cookies.get(COOKIE)?.value;
+let variant = (qpVariant ??
+	cookieVariant ??
+	(Math.random() < 0.5 ? "A" : "B")) as Variant;
+
+// 3) Persistir cookie 90 días
+Astro.cookies.set(COOKIE, variant, {
+	path: "/",
+	maxAge: 60 * 60 * 24 * 90,
+	sameSite: "lax",
+	httpOnly: false,
+});
+---
+
+<section class="py-8 px-4 bg-[#87806B]" id="calendly" data-ab-calendly={variant}>
 	<div class="max-w-[600px] mx-auto">
 		<div class="flex mx-auto justify-center mb-4 gap-2">
 			<img src="/images/reviews-profiles.png" alt="Reviews Vastu Shastra">
@@ -10,8 +38,7 @@
 		<h2
 			class="text-[20px] text-center md:text-[32px] leading-[120%] md:leading-[110%] font-bold text-white mb-4"
 		>
-			Agendá tu llamada, vamos a resolver tus dudas y consultas, y ver
-			juntos si esta Formación es para vos.
+			{titles[variant]}
 		</h2>
 		<iframe
 			id="calendly-frame"
@@ -164,6 +191,9 @@
 				},
 			).catch((err) => console.error("Tracking error:", err));
 
+			// Leer variante A/B del calendly desde cookie
+			const variantCalendly = document.cookie.split("; ").find(c => c.startsWith("ab_calendly_title="))?.split("=")[1] || "";
+
 			// Marcar agendo=Si en FFA (upsert por correo)
 			// keepalive: true → la request sobrevive al redirect a /thankyou
 			fetch("/api/analytics/lead", {
@@ -174,6 +204,7 @@
 					email,
 					phone,
 					agendo: "Si",
+					...(variantCalendly && { variantCalendly }),
 				}),
 				keepalive: true,
 			}).catch((err) => console.error("[FFA] error:", err));

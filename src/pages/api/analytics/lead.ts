@@ -18,6 +18,7 @@ export const POST: APIRoute = async ({ request }) => {
         telefono: body.phone,
         ...(body.ad !== undefined && { campana: body.ad }),
         ...(body.variant !== undefined && { splitTest: body.variant }),
+        ...(body.variantCalendly !== undefined && { splitTestCalendly: body.variantCalendly }),
         ...(body.agendo !== undefined && { agendo: body.agendo }),
         ...(body.startTime !== undefined && { startTime: body.startTime }),
         ...(body.edad !== undefined && { edad: body.edad }),
