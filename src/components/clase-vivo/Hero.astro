@@ -1,0 +1,166 @@
+---
+import {
+  FECHAS,
+  FECHA_PROXIMA_ISO,
+  HOTMART_URL,
+  PRECIO_LABEL,
+  CUOTAS,
+  YOUTUBE_VIDEO_ID,
+  CUPOS_RESTANTES,
+} from "../../data/clase-vivo";
+---
+
+<section class="relative pt-10 pb-12 md:pt-16 md:pb-20 px-4 overflow-hidden">
+  <!-- Glow decorativo -->
+  <div
+    class="hidden md:block size-[700px] rounded-full bg-[#F3B23A]/30 absolute blur-[200px] -left-[260px] -top-[260px] pointer-events-none"
+  ></div>
+  <div
+    class="hidden md:block size-[600px] rounded-full bg-[#F3B23A]/15 absolute blur-[180px] -right-[200px] top-[200px] pointer-events-none"
+  ></div>
+
+  <div class="max-w-[980px] mx-auto relative z-10">
+    <!-- Eyebrow: badge de fecha + escasez -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-5">
+      <span
+        class="inline-flex items-center gap-2 text-[12px] md:text-[13px] bg-red-500 border border-red-400/60 text-white py-1.5 px-3.5 rounded-full font-semibold tracking-wide uppercase shadow-[0_0_20px_rgba(239,68,68,0.35)]"
+      >
+        <span class="size-1.5 rounded-full bg-white animate-pulse"></span>
+        En vivo · {FECHAS[0].label}
+      </span>
+      <span
+        class="inline-flex items-center text-[12px] md:text-[13px] bg-white/5 border border-white/10 text-white/80 py-1.5 px-3.5 rounded-full"
+      >
+        Cupos restantes: <strong class="text-white ml-1">{CUPOS_RESTANTES}</strong>
+      </span>
+    </div>
+
+    <!-- Headline -->
+    <h1
+      class="text-center text-[28px] sm:text-[36px] md:text-[52px] font-bold leading-[1.1] tracking-[-0.02em]"
+    >
+      No es lo mismo una casa linda que <span class="text-[#F3B23A]">diseñar un espacio para ser feliz.</span>
+      <span class="text-white/90 text-[20px] sm:text-[26px] md:text-[36px] block mt-4 font-semibold leading-[1.2]">
+        En 2 horas vas a aprender cómo lograrlo en tu propia casa y proyectos.
+      </span>
+    </h1>
+
+    <!-- Subheadline -->
+    <p
+      class="max-w-[720px] mx-auto text-center text-white/70 text-[15px] md:text-[17px] leading-[1.6] mt-5"
+    >
+      Una clase en vivo de Vastu Shastra con el Arq. Iván Dacharry: la ciencia ancestral
+      que enseña a leer y armonizar los espacios.
+    </p>
+
+    <!-- Video / placeholder -->
+    <div class="max-w-[760px] mx-auto mt-8 relative">
+      <div class="rounded-xl border-2 border-[#F3B23A]/40 bg-[#0e0a02] overflow-hidden shadow-[0_30px_80px_-30px_rgba(243,178,58,0.35)]">
+        {YOUTUBE_VIDEO_ID ? (
+          <div class="aspect-video w-full">
+            <iframe
+              class="w-full h-full"
+              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1`}
+              title="Vastu Shastra — Clase en vivo"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            />
+          </div>
+        ) : (
+          <div class="aspect-video w-full bg-gradient-to-br from-[#1c1408] to-[#0e0a02] flex flex-col items-center justify-center gap-3 text-center px-6">
+            <div class="size-14 md:size-16 rounded-full bg-[#F3B23A]/15 border border-[#F3B23A]/40 flex items-center justify-center">
+              <svg class="size-6 md:size-7 text-[#F3B23A]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+            <p class="text-white/60 text-sm md:text-base max-w-[420px]">
+              Mirá un adelanto de lo que vas a vivir en la clase
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- CTA principal -->
+    <div class="mt-8 max-w-[520px] mx-auto">
+      <a
+        href={HOTMART_URL}
+        class="block w-full text-center bg-[#F3B23A] hover:bg-[#ffc34c] text-[#1a1106] font-bold text-[17px] md:text-[19px] py-4 md:py-5 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_60px_-15px_rgba(243,178,58,0.6)]"
+      >
+        Reservar mi lugar
+      </a>
+      <p class="text-center text-white/50 text-[12px] mt-3">
+        {CUOTAS} · Acceso inmediato + grabación · Pago seguro vía Hotmart
+      </p>
+    </div>
+
+    <!-- Countdown -->
+    <div class="mt-10 max-w-[640px] mx-auto">
+      <p class="text-center text-[11px] uppercase tracking-[0.2em] text-white/40 mb-3">
+        Empieza en
+      </p>
+      <div class="flex items-center justify-center gap-2 md:gap-4">
+        <div class="cv-cell">
+          <span id="cv-d" class="block text-2xl md:text-4xl font-bold tabular-nums">00</span>
+          <span class="block text-[10px] uppercase tracking-wider text-white/40 mt-1">días</span>
+        </div>
+        <span class="text-[#F3B23A]/40 text-2xl">:</span>
+        <div class="cv-cell">
+          <span id="cv-h" class="block text-2xl md:text-4xl font-bold tabular-nums">00</span>
+          <span class="block text-[10px] uppercase tracking-wider text-white/40 mt-1">hs</span>
+        </div>
+        <span class="text-[#F3B23A]/40 text-2xl">:</span>
+        <div class="cv-cell">
+          <span id="cv-m" class="block text-2xl md:text-4xl font-bold tabular-nums">00</span>
+          <span class="block text-[10px] uppercase tracking-wider text-white/40 mt-1">min</span>
+        </div>
+        <span class="text-[#F3B23A]/40 text-2xl">:</span>
+        <div class="cv-cell">
+          <span id="cv-s" class="block text-2xl md:text-4xl font-bold tabular-nums">00</span>
+          <span class="block text-[10px] uppercase tracking-wider text-white/40 mt-1">seg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ targetIso: FECHA_PROXIMA_ISO }}>
+  const target = new Date(targetIso).getTime();
+  const $d = document.getElementById("cv-d");
+  const $h = document.getElementById("cv-h");
+  const $m = document.getElementById("cv-m");
+  const $s = document.getElementById("cv-s");
+  function pad(n) { return String(Math.max(0, n)).padStart(2, "0"); }
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      [$d, $h, $m, $s].forEach((el) => el && (el.textContent = "00"));
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hrs  = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    if ($d) $d.textContent = pad(days);
+    if ($h) $h.textContent = pad(hrs);
+    if ($m) $m.textContent = pad(mins);
+    if ($s) $s.textContent = pad(secs);
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+<style>
+  .cv-cell {
+    min-width: 64px;
+    padding: 0.75rem 0.5rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .cv-cell { min-width: 88px; padding: 1rem 0.75rem; }
+  }
+</style>

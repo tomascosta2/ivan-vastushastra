@@ -1,0 +1,92 @@
+---
+import { RESERVAS_FAKE } from "../../data/clase-vivo";
+---
+
+<div
+  id="cv-toast"
+  aria-live="polite"
+  class="fixed left-3 sm:left-4 bottom-24 sm:bottom-24 z-[100] max-w-[280px] pointer-events-none"
+>
+  <div
+    id="cv-toast-card"
+    class="bg-[#1a1106]/90 backdrop-blur-md border border-white/10 rounded-lg shadow-lg p-2.5 flex items-center gap-2.5 opacity-0 translate-y-2 transition-all duration-300 pointer-events-auto"
+  >
+    <span class="size-1.5 shrink-0 rounded-full bg-emerald-400 animate-pulse"></span>
+    <div class="min-w-0 flex-1">
+      <p class="text-[12px] leading-tight text-white/90">
+        <span id="cv-toast-name" class="font-medium"></span>
+        <span class="text-white/45"> · </span>
+        <span id="cv-toast-city" class="text-white/60"></span>
+      </p>
+      <p class="text-[10.5px] text-white/40 mt-0.5">
+        Reservó · <span id="cv-toast-time"></span>
+      </p>
+    </div>
+    <button
+      id="cv-toast-close"
+      type="button"
+      aria-label="Cerrar"
+      class="text-white/30 hover:text-white/70 transition-colors shrink-0 -mr-0.5"
+    >
+      <svg class="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ reservas: RESERVAS_FAKE }}>
+  (function () {
+    const card = document.getElementById("cv-toast-card");
+    const $name = document.getElementById("cv-toast-name");
+    const $city = document.getElementById("cv-toast-city");
+    const $time = document.getElementById("cv-toast-time");
+    const $close = document.getElementById("cv-toast-close");
+    if (!card || !$name || !$city || !$time || !$close) return;
+
+    const VISIBLE_MS = 4500;
+    const FIRST_DELAY_MS = 5000;
+    const MIN_GAP_MS = 18000;
+    const MAX_GAP_MS = 35000;
+
+    let i = Math.floor(Math.random() * reservas.length);
+    let hideTimer = null;
+    let nextTimer = null;
+    let stopped = false;
+
+    function rand(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function show() {
+      if (stopped) return;
+      const r = reservas[i % reservas.length];
+      i++;
+      $name.textContent = r.nombre;
+      $city.textContent = r.ciudad;
+      $time.textContent = `hace ${rand(2, 14)} min`;
+
+      // slide in
+      card.classList.remove("opacity-0", "translate-y-3");
+      card.classList.add("opacity-100", "translate-y-0");
+
+      // schedule hide
+      hideTimer = setTimeout(() => {
+        card.classList.remove("opacity-100", "translate-y-0");
+        card.classList.add("opacity-0", "translate-y-3");
+        // schedule next
+        nextTimer = setTimeout(show, rand(MIN_GAP_MS, MAX_GAP_MS));
+      }, VISIBLE_MS);
+    }
+
+    $close.addEventListener("click", () => {
+      stopped = true;
+      clearTimeout(hideTimer);
+      clearTimeout(nextTimer);
+      card.classList.remove("opacity-100", "translate-y-0");
+      card.classList.add("opacity-0", "translate-y-3");
+    });
+
+    setTimeout(show, FIRST_DELAY_MS);
+  })();
+</script>

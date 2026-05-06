@@ -1,0 +1,63 @@
+---
+import {
+  FECHAS,
+  HOTMART_URL,
+  PRECIO_LABEL,
+  CUOTAS,
+  CUPOS_RESTANTES,
+} from "../../data/clase-vivo";
+---
+
+<section class="py-20 md:py-32 px-4 relative overflow-hidden">
+  <!-- Glow -->
+  <div
+    class="hidden md:block size-[800px] rounded-full bg-[#F3B23A]/15 absolute blur-[220px] left-1/2 -translate-x-1/2 -top-[200px] pointer-events-none"
+  ></div>
+
+  <div class="max-w-[820px] mx-auto relative">
+    <div class="rounded-2xl border border-[#F3B23A]/30 bg-gradient-to-br from-[#1a1106] to-[#0e0a02] p-8 md:p-12 text-center">
+      <span class="inline-flex items-center gap-2 text-[12px] md:text-[13px] bg-[#F3B23A]/15 border border-[#F3B23A]/40 text-[#F3B23A] py-1.5 px-3.5 rounded-full font-semibold tracking-wide uppercase">
+        <span class="size-1.5 rounded-full bg-[#F3B23A] animate-pulse"></span>
+        Quedan {CUPOS_RESTANTES} cupos para {FECHAS[0].label}
+      </span>
+
+      <h2 class="text-[28px] md:text-[44px] font-bold mt-6 leading-[1.1] tracking-[-0.02em]">
+        Tu casa ya te está hablando.
+        <br class="hidden md:block" />
+        <span class="text-[#F3B23A]">Falta que aprendas a escucharla.</span>
+      </h2>
+
+      <p class="text-white/65 text-[15px] md:text-[17px] mt-5 max-w-[580px] mx-auto leading-[1.65]">
+        2 horas en vivo, una clase que te cambia cómo vas a habitar tu casa de
+        ahora en adelante. La inversión más chica con el retorno más alto que
+        vas a hacer este mes.
+      </p>
+
+      <div class="mt-8 max-w-[440px] mx-auto">
+        <a
+          href={HOTMART_URL}
+          class="block w-full text-center bg-[#F3B23A] hover:bg-[#ffc34c] text-[#1a1106] font-bold text-[17px] md:text-[19px] py-4 md:py-5 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_60px_-15px_rgba(243,178,58,0.6)]"
+        >
+          Reservar mi lugar — {PRECIO_LABEL}
+        </a>
+        <p class="text-white/50 text-[12px] mt-3">
+          {CUOTAS} · Acceso inmediato + grabación · Pago seguro vía Hotmart
+        </p>
+      </div>
+
+      <div class="mt-10 pt-8 border-t border-white/10">
+        <p class="text-white/40 text-[11px] uppercase tracking-[0.2em] mb-4">
+          Próximas fechas en vivo
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          {FECHAS.map((f) => (
+            <div class="text-left bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+              <p class="text-[14px] md:text-[15px] font-semibold">{f.label}</p>
+              <p class="text-[12px] text-white/50 mt-0.5">{f.time}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

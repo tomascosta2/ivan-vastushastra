@@ -1,0 +1,73 @@
+---
+const testimonials = [
+  {
+    name: "Agustina Vanzulli",
+    role: "Diseñadora · Buenos Aires",
+    photo: "/images/AGUSTINA-VANZULLI.jpg",
+    quote:
+      "Hice 3 cambios chicos en mi depto después de la clase. A los 4 días estaba durmiendo distinto. No exagero — mi pareja lo notó antes que yo.",
+  },
+  {
+    name: "Cecilia Ramadori",
+    role: "Madre · Mendoza",
+    photo: "/images/CECILIA-RAMADORI.jpeg",
+    quote:
+      "Tenía una sensación rara en la cocina hace meses, no podía explicarla. Iván lo identificó en 5 minutos en la clase. Re-orientamos la mesada y se sintió otra cosa al toque.",
+  },
+  {
+    name: "Fernanda Chedid",
+    role: "Coach · CABA",
+    photo: "/images/FERNANDA-CHEDID.jpeg",
+    quote:
+      "Pensé que iba a ser todo místico abstracto. Es lo opuesto: Iván te muestra el porqué con lógica de arquitecto. Salí con un mapa de mi casa que ya estoy aplicando.",
+  },
+  {
+    name: "Yael Hocsman",
+    role: "Emprendedora · Córdoba",
+    photo: "/images/YAEL-HOCSMAN.jpeg",
+    quote:
+      "El bonus de Hartmann me dio la respuesta a 2 años de despertarme cansada. Movimos la cama y desapareció. Solo por eso ya valió la clase entera.",
+  },
+];
+---
+
+<section class="py-16 md:py-24 px-4 bg-white/[0.02] border-y border-white/5">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="text-center mb-10 md:mb-14">
+      <span class="text-[#F3B23A] text-[12px] font-semibold tracking-[0.2em] uppercase">
+        Lo que dicen
+      </span>
+      <h2 class="text-[28px] md:text-[40px] font-bold mt-3 leading-[1.15] tracking-[-0.02em]">
+        Resultados reales, no “qué linda clase”
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+      {testimonials.map((t) => (
+        <div class="rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+          <div class="flex items-center gap-1 mb-3">
+            {Array.from({ length: 5 }).map(() => (
+              <svg class="size-4 text-[#F3B23A]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+              </svg>
+            ))}
+          </div>
+          <p class="text-white/85 text-[15px] md:text-[16px] leading-[1.65]">
+            “{t.quote}”
+          </p>
+          <div class="flex items-center gap-3 mt-5 pt-5 border-t border-white/10">
+            <img
+              src={t.photo}
+              alt={t.name}
+              class="size-11 rounded-full object-cover border border-white/10"
+            />
+            <div>
+              <p class="font-semibold text-[14px]">{t.name}</p>
+              <p class="text-[12px] text-white/50">{t.role}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

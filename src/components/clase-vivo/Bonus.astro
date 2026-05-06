@@ -1,0 +1,60 @@
+---
+import { FECHAS } from "../../data/clase-vivo";
+
+const bonuses = [
+  {
+    title: "Cómo armar un altar en tu casa",
+    desc: "PDF con 5 ubicaciones según orientación y qué objetos potencian cada zona. Para que el altar no sea decorativo — que funcione.",
+  },
+  {
+    title: "Detección de líneas Hartmann",
+    desc: "Guía paso a paso para detectar las líneas geopáticas que pasan por debajo de tu cama (y por qué eso explica tu insomnio).",
+  },
+  {
+    title: "Meditación de los 5 Elementos",
+    desc: "Audio de 18 minutos para conectar con los elementos de tu hogar. Ideal para hacer una vez por semana.",
+  },
+  {
+    title: "Bonus sorpresa",
+    desc: "Lo revelamos al final de la clase en vivo — solo para quienes asistan. Vale más que el precio de la clase entera.",
+  },
+];
+---
+
+<section class="py-16 md:py-24 px-4">
+  <div class="max-w-[1080px] mx-auto">
+    <div class="text-center mb-10 md:mb-14">
+      <span class="text-[#F3B23A] text-[12px] font-semibold tracking-[0.2em] uppercase">
+        Te llevás esto incluido
+      </span>
+      <h2 class="text-[28px] md:text-[40px] font-bold mt-3 leading-[1.15] tracking-[-0.02em]">
+        4 bonus que <span class="text-[#F3B23A]">aplicás esta semana</span>
+      </h2>
+      <p class="text-white/60 text-[14px] md:text-[16px] mt-3 max-w-[600px] mx-auto">
+        Solo si reservás antes del <strong class="text-white">{FECHAS[0].label}</strong>.
+        Después de esa fecha quedan disponibles solo para alumnos de la formación.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4 md:gap-5">
+      {bonuses.map((b, i) => (
+        <div class="relative rounded-xl border border-[#F3B23A]/20 bg-gradient-to-br from-[#F3B23A]/[0.04] to-transparent p-5 md:p-6 hover:border-[#F3B23A]/50 transition-colors">
+          <div class="absolute top-4 right-4 text-[10px] font-bold tracking-wider text-[#F3B23A]/60 uppercase">
+            Bonus {String(i + 1).padStart(2, "0")}
+          </div>
+          <div class="size-10 rounded-lg bg-[#F3B23A]/15 border border-[#F3B23A]/30 flex items-center justify-center mb-4">
+            <svg class="size-5 text-[#F3B23A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="font-bold text-[16px] md:text-[18px] leading-snug">
+            {b.title}
+          </h3>
+          <p class="text-white/65 text-[14px] md:text-[15px] mt-2 leading-[1.6]">
+            {b.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

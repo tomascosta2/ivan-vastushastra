@@ -1,0 +1,55 @@
+---
+const moments = [
+  {
+    n: "01",
+    title: "Vas a entender por qué tu casa te afecta",
+    desc: "El origen del Vastu y por qué los espacios no son pasivos: cada orientación, cada elemento y cada rincón tienen una carga energética que tu cuerpo siente — incluso si tu mente no la registra.",
+  },
+  {
+    n: "02",
+    title: "Vas a leer tu propia casa en vivo",
+    desc: "Te llevamos por el ‘mapa energético’ que usan los consultores de Vastu. Vas a poder pensar tu casa mientras explico — y empezar a ver lo que antes te pasaba por al lado.",
+  },
+  {
+    n: "03",
+    title: "Te llevás 3 cambios concretos para hacer hoy",
+    desc: "No teoría — acciones aplicables esta misma semana. La cama, la cocina y el espacio de trabajo: tres puntos que mueven más que cualquier remodelación.",
+  },
+  {
+    n: "04",
+    title: "Q&A en vivo + grabación",
+    desc: "Después de las 2 horas hay un espacio abierto para preguntas. Y tenés la grabación de la clase para volver a verla cuando quieras.",
+  },
+];
+---
+
+<section class="py-16 md:py-24 px-4">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="text-center mb-10 md:mb-14">
+      <span class="text-[#F3B23A] text-[12px] font-semibold tracking-[0.2em] uppercase">
+        Qué pasa en la clase
+      </span>
+      <h2 class="text-[28px] md:text-[42px] font-bold mt-3 leading-[1.15] tracking-[-0.02em]">
+        2 horas. Un antes y un después en cómo <span class="text-[#F3B23A]">vivís tu casa.</span>
+      </h2>
+    </div>
+
+    <div class="space-y-3 md:space-y-4">
+      {moments.map((m) => (
+        <div class="grid grid-cols-[auto_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6 p-5 md:p-7 rounded-xl border border-white/10 bg-white/[0.03] hover:border-[#F3B23A]/40 transition-colors">
+          <div class="text-[#F3B23A]/60 text-3xl md:text-5xl font-black tabular-nums leading-none">
+            {m.n}
+          </div>
+          <div>
+            <h3 class="font-bold text-[17px] md:text-[20px] leading-snug">
+              {m.title}
+            </h3>
+            <p class="text-white/65 text-[14px] md:text-[15px] mt-2 leading-[1.65]">
+              {m.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
