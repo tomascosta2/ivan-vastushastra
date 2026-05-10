@@ -14,8 +14,8 @@ export const FECHAS = [
 export const FECHA_PROXIMA_ISO = FECHAS[0].iso;
 
 // ── Precio + checkout ────────────────────────────────────────────────────────
-export const PRECIO_USD = 65;
-export const PRECIO_LABEL = "USD 65";
+export const PRECIO_USD = 29;
+export const PRECIO_LABEL = "USD 29";
 export const CUOTAS = "hasta 3 cuotas";
 
 // Link del checkout de Hotmart (pegá acá el link del producto al precio nuevo)
@@ -30,7 +30,7 @@ export const ANCHOR_USD = 5000;
 // Cuando tengas el link de YouTube, pegá el ID acá (parte después de v=).
 // Ej: para https://youtube.com/watch?v=abc123 → "abc123".
 // Si lo dejás null, el hero muestra una imagen estática en lugar del video.
-export const YOUTUBE_VIDEO_ID: string | null = null;
+export const YOUTUBE_VIDEO_ID: string | null = "uBLdVkTTRNw";
 
 // ── Cupos por sesión (escasez visual; ajustá si ya vendiste algunos) ─────────
 export const CUPOS_POR_SESION = 50;

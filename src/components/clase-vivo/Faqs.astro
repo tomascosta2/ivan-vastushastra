@@ -1,20 +1,33 @@
 ---
-const faqs = [
+const faqs: { q: string; a: string[] }[] = [
   {
-    q: "¿Y si no puedo conectarme en vivo?",
-    a: "Tenés la grabación disponible al día siguiente, sin vencimiento. La podés ver cuando quieras. Igual la idea es que vengas en vivo porque hay un Q&A donde podés preguntar por tu caso específico — y ese intercambio no queda grabado tan bien.",
+    q: "¿Necesito conocimientos previos sobre Vastu Shastra?",
+    a: [
+      "No.",
+      "Esta experiencia está pensada como una introducción clara y accesible al Vastu Shastra, tanto para arquitectos y diseñadores como para cualquier persona interesada en comprender el impacto del Espacio sobre nuestra vida.",
+    ],
   },
   {
-    q: "¿Esto es esotérico o tiene base real?",
-    a: "Tiene base. El Vastu Shastra es una disciplina con miles de años de tradición y hoy se cruza con disciplinas modernas como bioconstrucción y geobiología. Iván lo enseña con lógica de arquitecto, no como creencia: cada principio tiene una explicación que vas a poder verificar vos mismo en tu casa.",
+    q: "¿Qué pasa si no puedo conectarme en vivo?",
+    a: [
+      "La clase queda grabada y vas a poder verla después, a tu ritmo y sin límite de tiempo.",
+      "De todas formas, participar en vivo te permite vivir la experiencia completa y formar parte del espacio de preguntas al final de la clase.",
+    ],
   },
   {
-    q: "¿Sirve si vivo en departamento o en una casa que no diseñé yo?",
-    a: "Sí — de hecho la mayoría de los alumnos viven en deptos o casas existentes. La clase está pensada para mostrarte qué cambios podés hacer dentro del espacio que ya tenés (orientación de muebles, ubicación de la cama, distribución del living) sin romper paredes.",
+    q: "¿Con esta clase ya soy un experto en Vastu Shastra?",
+    a: [
+      "No.",
+      "Esta experiencia es una puerta de entrada al Vastu Shastra y a una nueva forma de comprender el Espacio.",
+      "Si después querés profundizar profesionalmente, al final de la clase vas a conocer las opciones de formación avanzada.",
+    ],
   },
   {
-    q: "¿Para qué tipo de persona NO es esta clase?",
-    a: "Si solo querés decoración o feng shui-instagram, no es lo que vas a encontrar acá. Esto es Vastu — más antiguo, más estructurado, con mucha más profundidad. Si buscás algo livianito, mejor pasá.",
+    q: "¿Cuándo y cómo puedo participar de la experiencia?",
+    a: [
+      "La experiencia se realiza en vivo a través de Zoom el miércoles 27 a las 19:30 hs (Argentina) y el sábado 30 a las 10:00 hs (Argentina).",
+      "Una vez que completes tu inscripción e ingreses al grupo de WhatsApp, se te enviará toda la información para que puedas elegir la fecha y horario en la que desees participar. Y si lo deseás, también podés asistir a ambos encuentros.",
+    ],
   },
 ];
 ---
@@ -41,8 +54,8 @@ const faqs = [
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <div class="px-5 pb-5 md:px-6 md:pb-6 text-white/70 text-[14px] md:text-[15px] leading-[1.7]">
-            {f.a}
+          <div class="px-5 pb-5 md:px-6 md:pb-6 text-white/70 text-[14px] md:text-[15px] leading-[1.7] space-y-2">
+            {f.a.map((paragraph) => <p>{paragraph}</p>)}
           </div>
         </details>
       ))}

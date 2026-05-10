@@ -2,23 +2,39 @@
 const moments = [
   {
     n: "01",
-    title: "Vas a entender por qué tu casa te afecta",
-    desc: "El origen del Vastu y por qué los espacios no son pasivos: cada orientación, cada elemento y cada rincón tienen una carga energética que tu cuerpo siente — incluso si tu mente no la registra.",
+    title: "Qué es el Vastu Shastra",
+    subtitle: "La Ciencia Ancestral detrás del Espacio",
+    body: [
+      "Vas a descubrir una forma completamente diferente de entender la Arquitectura: no solo como materia y funcionalidad, sino como una herramienta capaz de influir profundamente en el bienestar, la percepción y la vida humana.",
+      "Una mirada ancestral que puede transformar la manera en que entendés tu profesión.",
+    ],
   },
   {
     n: "02",
-    title: "Vas a leer tu propia casa en vivo",
-    desc: "Te llevamos por el ‘mapa energético’ que usan los consultores de Vastu. Vas a poder pensar tu casa mientras explico — y empezar a ver lo que antes te pasaba por al lado.",
+    title: "El Alma del Espacio · Vastu Purusha",
+    subtitle: "Comprender la Energía que habita un lugar",
+    body: [
+      "Aprenderás por qué algunos Espacios nos expanden, inspiran y contienen... mientras otros nos drenan o desconectan.",
+      "Empezarás a percibir el Espacio desde un lugar mucho más sensible, intuitivo y consciente.",
+    ],
   },
   {
     n: "03",
-    title: "Te llevás 3 cambios concretos para hacer hoy",
-    desc: "No teoría — acciones aplicables esta misma semana. La cama, la cocina y el espacio de trabajo: tres puntos que mueven más que cualquier remodelación.",
+    title: "El Mapa Energético del Espacio",
+    subtitle: "Cómo leer lo invisible",
+    body: [
+      "Vas a descubrir cómo las orientaciones, los elementos y la Energía de un lugar influyen silenciosamente en nuestra forma de vivir.",
+      "Una herramienta que puede cambiar para siempre tu manera de diseñar y habitar los Espacios.",
+    ],
   },
   {
     n: "04",
-    title: "Q&A en vivo + grabación",
-    desc: "Después de las 2 horas hay un espacio abierto para preguntas. Y tenés la grabación de la clase para volver a verla cuando quieras.",
+    title: "Diseñar en Armonía con la Naturaleza",
+    subtitle: "Del Espacio como materia... al Espacio como Energía",
+    body: [
+      "Comprenderás cómo aplicar principios simples y profundos para empezar a crear Espacios más conscientes, humanos y en armonía con la Naturaleza.",
+      "Una introducción a una manera de diseñar que puede devolverle propósito y profundidad a tu profesión.",
+    ],
   },
 ];
 ---
@@ -30,7 +46,7 @@ const moments = [
         Qué pasa en la clase
       </span>
       <h2 class="text-[28px] md:text-[42px] font-bold mt-3 leading-[1.15] tracking-[-0.02em]">
-        2 horas. Un antes y un después en cómo <span class="text-[#F3B23A]">vivís tu casa.</span>
+        Una nueva forma de comprender el Espacio, la Arquitectura y <span class="text-[#F3B23A]">el impacto invisible que tienen sobre nuestra vida.</span>
       </h2>
     </div>
 
@@ -44,9 +60,14 @@ const moments = [
             <h3 class="font-bold text-[17px] md:text-[20px] leading-snug">
               {m.title}
             </h3>
-            <p class="text-white/65 text-[14px] md:text-[15px] mt-2 leading-[1.65]">
-              {m.desc}
+            <p class="text-[#F3B23A]/80 italic text-[14px] md:text-[15px] mt-1 leading-[1.5]">
+              {m.subtitle}
             </p>
+            {m.body.map((paragraph) => (
+              <p class="text-white/65 text-[14px] md:text-[15px] mt-3 leading-[1.65]">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
       ))}

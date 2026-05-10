@@ -1,32 +1,35 @@
 ---
-const testimonials = [
+interface Testimonial {
+  name: string;
+  role?: string;
+  photo: string;
+  quote: string;
+}
+
+const testimonials: Testimonial[] = [
   {
-    name: "Agustina Vanzulli",
-    role: "Diseñadora · Buenos Aires",
-    photo: "/images/AGUSTINA-VANZULLI.jpg",
+    name: "Emilia Cuervo",
+    photo: "/images/EMILIA-CUERVO.png",
     quote:
-      "Hice 3 cambios chicos en mi depto después de la clase. A los 4 días estaba durmiendo distinto. No exagero — mi pareja lo notó antes que yo.",
+      "Me encantó el curso introductorio de Vastu Shastra! Iván es muy claro y didáctico con sus explicaciones. Ahora me encuentro realizando la formación ya que necesitaba aprender en profundidad este tema que me resulta muy interesante y aplicable en el día a día para poder equilibrar tanto las energías de los ambientes en los cuales habito como en mi propio ser. Soy arquitecta y va a ser una gran herramienta para fusionar con mi profesión. Lo recomiendo 100%.",
   },
   {
-    name: "Cecilia Ramadori",
-    role: "Madre · Mendoza",
-    photo: "/images/CECILIA-RAMADORI.jpeg",
+    name: "María Belén López",
+    photo: "/images/MARIA-BELEN-LOPEZ.png",
     quote:
-      "Tenía una sensación rara en la cocina hace meses, no podía explicarla. Iván lo identificó en 5 minutos en la clase. Re-orientamos la mesada y se sintió otra cosa al toque.",
+      "Me sentí muy a gusto durante la clase. Los temas tratados fueron más de los que esperaba, me sorprendió y colmó mis expectativas respecto al contenido, teniendo en cuenta la duración del curso. Respecto a la forma de dar la clase, sentí que fue claro y coherente al explicar y acorde a su modo en las redes sociales donde lo conocí a Iván. Logra bajar a todos los niveles de entendimiento el contenido que busca transmitir. Me agradan su simpleza y sus modos.",
   },
   {
-    name: "Fernanda Chedid",
-    role: "Coach · CABA",
-    photo: "/images/FERNANDA-CHEDID.jpeg",
+    name: "Victoria Rodriguez",
+    photo: "/images/VICTORIA-RODRIGUEZ.png",
     quote:
-      "Pensé que iba a ser todo místico abstracto. Es lo opuesto: Iván te muestra el porqué con lógica de arquitecto. Salí con un mapa de mi casa que ya estoy aplicando.",
+      "El curso espectacular, igual que la forma en que nos enseña Iván con palabras sencillas, ejemplos prácticos de aplicación. Aplicaré los conceptos en mi hogar y espero compartir mi experiencia.",
   },
   {
-    name: "Yael Hocsman",
-    role: "Emprendedora · Córdoba",
-    photo: "/images/YAEL-HOCSMAN.jpeg",
+    name: "Natalia Rathmann",
+    photo: "/images/NATALIA-RATHMANN.png",
     quote:
-      "El bonus de Hartmann me dio la respuesta a 2 años de despertarme cansada. Movimos la cama y desapareció. Solo por eso ya valió la clase entera.",
+      "Me encantó el curso; siento que recibimos información de valor y muy completa para llevar a la práctica inmediatamente. Iván me trasmitió claridad, precisión e inspiración. Voy por la formación! Muchas gracias!",
   },
 ];
 ---
@@ -63,7 +66,7 @@ const testimonials = [
             />
             <div>
               <p class="font-semibold text-[14px]">{t.name}</p>
-              <p class="text-[12px] text-white/50">{t.role}</p>
+              {t.role && <p class="text-[12px] text-white/50">{t.role}</p>}
             </div>
           </div>
         </div>

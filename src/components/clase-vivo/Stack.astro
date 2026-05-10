@@ -1,15 +1,13 @@
 ---
 import {
   PRECIO_LABEL,
-  PRECIO_USD,
-  ANCHOR_USD,
   CUOTAS,
   HOTMART_URL,
 } from "../../data/clase-vivo";
 
 const items = [
   { label: "Clase en vivo de 2 horas con Iván Dacharry", value: "USD 120" },
-  { label: "Espacio Q&A en vivo (preguntas dirigidas a tu caso)", value: "USD 60" },
+  { label: "Espacio Q&A en vivo", value: "USD 60" },
   { label: "Grabación completa de la clase + bonus", value: "USD 40" },
   { label: "Bonus #1 — Cómo armar tu altar (PDF)", value: "USD 25" },
   { label: "Bonus #2 — Detección de líneas Hartmann", value: "USD 35" },
@@ -24,18 +22,17 @@ const total = items.reduce((acc, i) => acc + parseInt(i.value.replace("USD ", ""
   <div class="max-w-[820px] mx-auto">
     <div class="text-center mb-10 md:mb-12">
       <span class="text-[#F3B23A] text-[12px] font-semibold tracking-[0.2em] uppercase">
-        Por qué cuesta lo que cuesta
+        El valor
       </span>
       <h2 class="text-[28px] md:text-[40px] font-bold mt-3 leading-[1.15] tracking-[-0.02em]">
-        La formación que hice en Estados Unidos arranca en
-        <span class="text-[#F3B23A]">USD {ANCHOR_USD.toLocaleString("en-US")}</span>.
-        <br class="hidden md:block" />
-        Esto es <span class="text-[#F3B23A]">{PRECIO_LABEL}</span>.
+        <span class="text-[#F3B23A]">{PRECIO_LABEL}</span> es el valor de dar el primer paso
+        para transformar tu manera de entender el Espacio, tu profesión y tu
+        propósito.
       </h2>
-      <p class="text-white/60 text-[15px] md:text-[17px] mt-4 max-w-[600px] mx-auto leading-[1.6]">
-        Hago esta clase como puerta de entrada — para que entiendas qué es Vastu
-        sin que te cueste lo mismo que la formación completa. Si después querés
-        profundizar, te muestro cómo al final de la clase.
+      <p class="text-white/60 text-[15px] md:text-[17px] mt-4 max-w-[680px] mx-auto leading-[1.6]">
+        Esta experiencia es la puerta de entrada al Vastu Shastra: una Sabiduría
+        Ancestral para reconectar con el diseño, la Naturaleza y tu propósito a
+        través de una nueva forma de habitar y crear.
       </p>
     </div>
 
