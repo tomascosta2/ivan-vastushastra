@@ -27,10 +27,9 @@ export const HOTMART_URL = "https://pay.hotmart.com/REPLACE-WITH-NEW-PRODUCT-LIN
 export const ANCHOR_USD = 5000;
 
 // ── Video del hero ───────────────────────────────────────────────────────────
-// Cuando tengas el link de YouTube, pegá el ID acá (parte después de v=).
-// Ej: para https://youtube.com/watch?v=abc123 → "abc123".
+// URL de embed del video (YouTube, Panda Video, Vimeo, etc).
 // Si lo dejás null, el hero muestra una imagen estática en lugar del video.
-export const YOUTUBE_VIDEO_ID: string | null = "uBLdVkTTRNw";
+export const VIDEO_EMBED_URL: string | null = "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=6d5c0b21-82c2-4327-92e2-28bd5637e905";
 
 // ── Cupos por sesión (escasez visual; ajustá si ya vendiste algunos) ─────────
 export const CUPOS_POR_SESION = 50;
