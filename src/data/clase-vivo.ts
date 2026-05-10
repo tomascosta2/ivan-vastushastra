@@ -19,7 +19,7 @@ export const PRECIO_LABEL = "USD 29";
 export const CUOTAS = "hasta 3 cuotas";
 
 // Link del checkout de Hotmart (pegá acá el link del producto al precio nuevo)
-export const HOTMART_URL = "https://pay.hotmart.com/REPLACE-WITH-NEW-PRODUCT-LINK";
+export const HOTMART_URL = "https://pay.hotmart.com/E105687106Q";
 
 // ── Anchor de precio (justifica el "$65 es regalado") ────────────────────────
 // Precio de la formación en EEUU que hizo Iván — se usa como referencia para
