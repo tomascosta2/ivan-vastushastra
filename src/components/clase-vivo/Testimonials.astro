@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
 ];
 ---
 
-<section class="py-16 md:py-24 px-4 bg-white/[0.02] border-y border-white/5">
+<section class="py-16 md:py-24 px-4 bg-stone-50 text-stone-900 border-y border-stone-200">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-10 md:mb-14">
       <span class="text-[#F3B23A] text-[12px] font-semibold tracking-[0.2em] uppercase">
@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
 
     <div class="grid md:grid-cols-2 gap-4 md:gap-5">
       {testimonials.map((t) => (
-        <div class="rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+        <div class="rounded-xl border border-stone-200 bg-white p-5 md:p-6 shadow-sm">
           <div class="flex items-center gap-1 mb-3">
             {Array.from({ length: 5 }).map(() => (
               <svg class="size-4 text-[#F3B23A]" fill="currentColor" viewBox="0 0 20 20">
@@ -55,18 +55,18 @@ const testimonials: Testimonial[] = [
               </svg>
             ))}
           </div>
-          <p class="text-white/85 text-[15px] md:text-[16px] leading-[1.65]">
+          <p class="text-stone-700 text-[15px] md:text-[16px] leading-[1.65]">
             “{t.quote}”
           </p>
-          <div class="flex items-center gap-3 mt-5 pt-5 border-t border-white/10">
+          <div class="flex items-center gap-3 mt-5 pt-5 border-t border-stone-200">
             <img
               src={t.photo}
               alt={t.name}
-              class="size-11 rounded-full object-cover border border-white/10"
+              class="size-11 rounded-full object-cover border border-stone-200"
             />
             <div>
               <p class="font-semibold text-[14px]">{t.name}</p>
-              {t.role && <p class="text-[12px] text-white/50">{t.role}</p>}
+              {t.role && <p class="text-[12px] text-stone-500">{t.role}</p>}
             </div>
           </div>
         </div>
