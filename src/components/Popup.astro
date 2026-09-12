@@ -477,7 +477,7 @@ const {
 		}
 
 		// Leer variante A/B desde cookie
-		const variantCookie = document.cookie.split("; ").find(c => c.startsWith("ab_vastu_title="))?.split("=")[1];
+		const variantCookie = document.cookie.split("; ").find(c => c.startsWith("ab_vastu_title_v2="))?.split("=")[1];
 		if (variantCookie) {
 			data.variant = variantCookie;
 		}

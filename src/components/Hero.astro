@@ -4,12 +4,18 @@ import Button from "./Button.astro";
 import VideoEmbed from "./VideoEmbed.astro";
 
 // === A/B CONFIG ===
-const COOKIE = "ab_vastu_title";
+//
+// El nombre de la cookie lleva versión a propósito. Hasta ahora A y B tenían el
+// mismo texto, así que los 1.400 leads ya repartidos no dicen nada sobre el
+// título: si se reusara la cookie, los que vuelven seguirían en su rama vieja y
+// sus visitas anteriores —de un texto que ya no existe— se mezclarían con las
+// nuevas. Cambiarle el nombre reparte a todos de cero y deja el test limpio.
+const COOKIE = "ab_vastu_title_v2";
 const titles: Record<"A" | "B", string> = {
   A: `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
     El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…`,
   B: `No es lo mismo construir una Casa linda, que diseñar un <span class="text-[#F3B23A]">Espacio para ser Feliz.</span>
-    El Vastu Shastra es la Ciencia Ancestral que te enseña a crear desde la Energía…`,
+    Aprende a crear espacios que además de verse bien se sientan bien`,
 };
 type Variant = "A" | "B";
 

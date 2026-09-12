@@ -5,7 +5,7 @@ import type { APIRoute } from 'astro';
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
     const data = await request.json();
-    const variant = cookies.get("ab_vastu_title")?.value ?? "unknown";
+    const variant = cookies.get("ab_vastu_title_v2")?.value ?? "unknown";
 
     console.log(variant)
 
